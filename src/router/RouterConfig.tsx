@@ -1,4 +1,5 @@
 import { MovieDetail } from '../pages'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,8 +7,13 @@ import {
   Navigate,
 } from 'react-router-dom'
 import Home from '../pages/Home/Home'
+interface RoutesProps {
+  children?: React.ReactNode
+  location?: Partial<Location> | string
+}
 
-const RouterConfig = () => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const RouterConfig = ({ children }: RoutesProps) => {
   return (
     <Router>
       <Routes>
