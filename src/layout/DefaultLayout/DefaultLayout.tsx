@@ -1,6 +1,7 @@
-import { Grid, GridItem } from '@chakra-ui/react'
 import React from 'react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import { Footer, Header } from '../../layout'
+import { Categories } from '../../components/categories'
 
 type Props = {
   children?: React.ReactNode
@@ -11,19 +12,34 @@ const DefaultLayout = ({ children }: Props) => {
       templateAreas={`"header"
                     "main"
                     "footer"`}
-      gridTemplateRows={'50px 1fr 50px'}
-      gridTemplateColumns={'1fr'}
+      gridTemplateRows={'100px 1fr 50px'}
+      gridTemplateColumns={'100%'}
       h="100vh"
       gap="1"
       color="blackAlpha.700"
+      bg="#5a5a5a"
       fontWeight="bold"
     >
-      <GridItem pl="2" bg="orange.300" area={'header'}>
+      <GridItem
+        area={'header'}
+        px="2"
+        py="2"
+        bg="transparent"
+        w="100%"
+        overflow="hidden"
+      >
         <Header />
+        <Categories />
       </GridItem>
-
       {children}
-      <GridItem pl="2" bg="blue.300" area={'footer'}>
+      <GridItem
+        p="2"
+        bg="blue.300"
+        area={'footer'}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Footer />
       </GridItem>
     </Grid>

@@ -15,9 +15,11 @@
     "@chakra-ui/react": "^2.4.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "axios": "^1.3.2",
     "framer-motion": "^8.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-multi-carousel": "^2.8.2",
     "react-router-dom": "^6.7.0"
   },
   "devDependencies": {
