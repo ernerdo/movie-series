@@ -18,7 +18,7 @@ const RouterConfig = ({ children }: RoutesProps) => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/detail" element={<MovieDetail />} />
+        <Route path="/detail/:id" element={<MovieDetail />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
