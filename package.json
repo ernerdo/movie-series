@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint --fix . --ext .ts,.tsx",
     "test": "vitest",
+    "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
