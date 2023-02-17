@@ -1,5 +1,9 @@
-import { Movie } from '../../models/movies.model'
-
 export interface MovieElementComponent {
   movie: Movie
+}
+
+interface Movie {
+  title: string
+  overview: string
+  poster_path: string
 }

@@ -2,11 +2,11 @@ import { Box, Flex } from '@chakra-ui/react'
 import { Category } from '../../models/categories.model'
 import { CategoriesList } from './Categories'
 
-const Categories = () => {
+const Categories = ({ categories }: any) => {
   return (
     <Box as="nav" overflow="scroll" p="1">
       <Flex gap="12px">
-        {CategoriesList.map((category: Category, i: number) => (
+        {CategoriesList?.map((category: any, i: number) => (
           <Box
             as="li"
             display="inline-block"
@@ -17,7 +17,7 @@ const Categories = () => {
             fontSize=".9rem"
             key={i}
           >
-            {category.name}
+            {category?.name}
           </Box>
         ))}
       </Flex>
