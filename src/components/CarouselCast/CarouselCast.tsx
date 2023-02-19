@@ -1,9 +1,10 @@
+import { Container, Text } from '@chakra-ui/react'
 import { FC, useState } from 'react'
 import ReactSimplyCarousel from 'react-simply-carousel'
-import { Container, Image, Text } from '@chakra-ui/react'
 
 import { API_IMAGE_URL } from '../../config'
 import { Cast } from '../../models/casts.model'
+import { CarouselImage } from '../CarouselImage'
 
 interface Props {
   cast: Cast[]
@@ -12,7 +13,11 @@ interface Props {
 export const CarouselCast: FC<Props> = ({ cast }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   return (
-    <div>
+    <div
+      style={{
+        maxWidth: '115rem',
+      }}
+    >
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
@@ -54,14 +59,8 @@ export const CarouselCast: FC<Props> = ({ cast }) => {
         {cast.map((cast, index) => {
           return (
             <Container key={`cast-viewer-${index}`}>
-              <Image
-                loading="lazy"
-                objectFit="cover"
-                maxH={{ base: 'sm' }}
-                maxW={{ base: 'sm' }}
-                borderRadius={`10px`}
-                src={`${API_IMAGE_URL}/w200${cast.profile_path}`}
-                alt={cast.name}
+              <CarouselImage
+                path={`${API_IMAGE_URL}/w200${cast.profile_path}`}
               />
               <Text>{cast.name}</Text>
             </Container>

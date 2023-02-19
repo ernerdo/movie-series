@@ -6,9 +6,9 @@ import {
   Heading,
   HStack,
   Image,
+  Skeleton,
   Stack,
   Text,
-  CircularProgress,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -16,10 +16,10 @@ import { useParams } from 'react-router-dom'
 import {
   getCast,
   getMovieDetails,
-  getSimilarMovies,
   getMovieVideos,
+  getSimilarMovies,
 } from '../../client/MovieApiClient'
-import { CarouselCast, CarouselMovies } from '../../components'
+import { CarouselCast, CarouselMovies, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts.model'
@@ -31,10 +31,9 @@ const MovieDetail = () => {
   const [cast, setCast] = useState<Cast[]>([])
   const [trailer, setTrailer] = useState<Trailer>()
   const { id } = useParams<{ id: string }>()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setIsLoading(true)
     getMovieDetails(Number(id)).then((response) => {
       if (!response) return
       setMovie(response)
@@ -59,7 +58,6 @@ const MovieDetail = () => {
     })
     getMovieVideos(Number(id)).then((response) => {
       if (!response) return
-      console.log(response)
       const youTube = response?.results.filter(
         (video: Trailer) =>
           video.site === 'YouTube' &&
@@ -68,16 +66,10 @@ const MovieDetail = () => {
       )
       setTrailer(youTube[0])
     })
-    setIsLoading(false)
   }, [id])
-  if (isLoading)
-    return (
-      <DefaultLayout>
-        <GridItem bg={'whiteAlpha.100'} area={'main'}>
-          <CircularProgress isIndeterminate color="blue.300" />
-        </GridItem>
-      </DefaultLayout>
-    )
+  const handleImageLoad = () => {
+    setIsLoading(false)
+  }
 
   return (
     <DefaultLayout>
@@ -96,18 +88,25 @@ const MovieDetail = () => {
                 background: 'linear-gradient(to top,#fafafa,transparent)',
               }}
             >
-              <Image
-                loading="lazy"
-                style={{ aspectRatio: '500/281' }}
-                display={`block`}
-                objectFit={`cover`}
-                objectPosition={`top`}
-                m={`auto`}
-                maxH={`80vh`}
-                w={`100%`}
-                alt={movie.title}
-                src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`}
-              />
+              <Skeleton isLoaded={!isLoading}>
+                <Image
+                  loading="lazy"
+                  style={{ aspectRatio: '500/281' }}
+                  display={`block`}
+                  objectFit={`cover`}
+                  objectPosition={`top`}
+                  m={`auto`}
+                  maxH={`80vh`}
+                  w={`100%`}
+                  alt={movie.title}
+                  src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`}
+                  fallbackSrc="https://via.placeholder.com/500x281"
+                  onLoad={() => {
+                    handleImageLoad()
+                  }}
+                  fallbackStrategy={`beforeLoadOrError`}
+                />
+              </Skeleton>
             </Box>
             <Stack px={`10%`}>
               <Flex justifyContent={`space-between`} mb={5}>
@@ -149,31 +148,7 @@ const MovieDetail = () => {
               <CarouselCast cast={cast} />
 
               <Heading color={`black`}>Trailer</Heading>
-              {trailer && (
-                <Box
-                  style={{
-                    position: 'relative',
-                    height: 0,
-                    overflow: 'hidden',
-                    paddingTop: '56.25%',
-                    borderRadius: '10px',
-                  }}
-                >
-                  <iframe
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                    }}
-                    title={trailer.name}
-                    src={`https://www.youtube.com/embed/${trailer?.key}`}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </Box>
-              )}
+              {trailer && <Iframe trailer={trailer} />}
 
               <Heading color={`black`}>Related movies</Heading>
               <CarouselMovies similarMovies={similarMovies} />
