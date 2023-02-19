@@ -1,13 +1,13 @@
 import {
   Box,
   Button,
+  Flex,
   GridItem,
   Heading,
   HStack,
   Image,
   Stack,
   Text,
-  Flex,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -61,6 +61,8 @@ const MovieDetail = () => {
           <Stack>
             <Box>
               <Image
+                style={{ aspectRatio: '500/281' }}
+                display={`block`}
                 objectFit={`cover`}
                 objectPosition={`top`}
                 m={`auto`}
