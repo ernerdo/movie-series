@@ -55,11 +55,12 @@ export const CarouselCast: FC<Props> = ({ cast }) => {
           return (
             <Container key={`cast-viewer-${index}`}>
               <Image
+                loading="lazy"
                 objectFit="cover"
                 maxH={{ base: 'sm' }}
                 maxW={{ base: 'sm' }}
                 borderRadius={`10px`}
-                src={`${API_IMAGE_URL}/w1280${cast.profile_path}`}
+                src={`${API_IMAGE_URL}/w200${cast.profile_path}`}
                 alt={cast.name}
               />
               <Text>{cast.name}</Text>

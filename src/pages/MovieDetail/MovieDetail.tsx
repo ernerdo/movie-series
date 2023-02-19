@@ -71,8 +71,20 @@ const MovieDetail = () => {
       <GridItem bg={'whiteAlpha.100'} area={'main'}>
         {movie && (
           <Stack>
-            <Box>
+            <Box
+              position={`relative`}
+              _before={{
+                content: '""',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                width: '100%',
+                height: '10%',
+                background: 'linear-gradient(to top,#fafafa,transparent)',
+              }}
+            >
               <Image
+                loading="lazy"
                 style={{ aspectRatio: '500/281' }}
                 display={`block`}
                 objectFit={`cover`}

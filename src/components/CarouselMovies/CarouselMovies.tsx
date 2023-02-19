@@ -56,11 +56,12 @@ export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
           return (
             <Container key={`similar-movie-viewer-${index}`}>
               <Image
+                loading="lazy"
                 objectFit="cover"
                 maxH={{ base: 'sm' }}
                 maxW={{ base: 'sm' }}
                 borderRadius={`10px`}
-                src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
+                src={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
               />
             </Container>
           )
