@@ -21,8 +21,13 @@ export const CarouselCast: FC<Props> = ({ cast }) => {
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
-        itemsToShow={4}
-        itemsToScroll={4}
+        responsiveProps={[
+          {
+            minWidth: 0,
+            itemsToShow: 4,
+            itemsToScroll: 4,
+          },
+        ]}
         forwardBtnProps={{
           style: {
             alignSelf: 'center',
