@@ -38,3 +38,11 @@ export const getCast = async (id: number) => {
     console.error(error)
   }
 }
+export const getMovieVideos = async (id: number) => {
+  try {
+    const response = await baseApiClient.get(`/movie/${id}/videos`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}

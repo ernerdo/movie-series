@@ -11,3 +11,11 @@ export interface Movie {
   genres: Genres[]
   vote_average: number
 }
+
+export interface Trailer {
+  id: string
+  key: string
+  name: string
+  site: string
+  type: string
+}

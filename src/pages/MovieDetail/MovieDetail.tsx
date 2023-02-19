@@ -17,17 +17,19 @@ import {
   getCast,
   getMovieDetails,
   getSimilarMovies,
+  getMovieVideos,
 } from '../../client/MovieApiClient'
 import { CarouselCast, CarouselMovies } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts.model'
-import { Movie } from '../../models/movies.model'
+import { Movie, Trailer } from '../../models/movies.model'
 
 const MovieDetail = () => {
   const [movie, setMovie] = useState<Movie>()
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([])
   const [cast, setCast] = useState<Cast[]>([])
+  const [trailer, setTrailer] = useState<Trailer>()
   const { id } = useParams<{ id: string }>()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -54,6 +56,17 @@ const MovieDetail = () => {
           cast.profile_path
       )
       setCast(castUniqueWithBackdrop)
+    })
+    getMovieVideos(Number(id)).then((response) => {
+      if (!response) return
+      console.log(response)
+      const youTube = response?.results.filter(
+        (video: Trailer) =>
+          video.site === 'YouTube' &&
+          video.type === 'Trailer' &&
+          video.name === 'Official Trailer'
+      )
+      setTrailer(youTube[0])
     })
     setIsLoading(false)
   }, [id])
@@ -134,6 +147,34 @@ const MovieDetail = () => {
               </HStack>
               <Heading color={`black`}>Cast</Heading>
               <CarouselCast cast={cast} />
+
+              <Heading color={`black`}>Trailer</Heading>
+              {trailer && (
+                <Box
+                  style={{
+                    position: 'relative',
+                    height: 0,
+                    overflow: 'hidden',
+                    paddingTop: '56.25%',
+                    borderRadius: '10px',
+                  }}
+                >
+                  <iframe
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    title={trailer.name}
+                    src={`https://www.youtube.com/embed/${trailer?.key}`}
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </Box>
+              )}
+
               <Heading color={`black`}>Related movies</Heading>
               <CarouselMovies similarMovies={similarMovies} />
             </Stack>
