@@ -8,6 +8,7 @@ import {
   Image,
   Stack,
   Text,
+  CircularProgress,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -28,8 +29,10 @@ const MovieDetail = () => {
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([])
   const [cast, setCast] = useState<Cast[]>([])
   const { id } = useParams<{ id: string }>()
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    setIsLoading(true)
     getMovieDetails(Number(id)).then((response) => {
       if (!response) return
       setMovie(response)
@@ -52,7 +55,16 @@ const MovieDetail = () => {
       )
       setCast(castUniqueWithBackdrop)
     })
+    setIsLoading(false)
   }, [id])
+  if (isLoading)
+    return (
+      <DefaultLayout>
+        <GridItem bg={'whiteAlpha.100'} area={'main'}>
+          <CircularProgress isIndeterminate color="blue.300" />
+        </GridItem>
+      </DefaultLayout>
+    )
 
   return (
     <DefaultLayout>
