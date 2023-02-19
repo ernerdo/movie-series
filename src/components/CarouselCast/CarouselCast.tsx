@@ -1,4 +1,4 @@
-import { Container, Text } from '@chakra-ui/react'
+import { Container, Text, Box } from '@chakra-ui/react'
 import { FC, useState } from 'react'
 import ReactSimplyCarousel from 'react-simply-carousel'
 
@@ -13,19 +13,20 @@ interface Props {
 export const CarouselCast: FC<Props> = ({ cast }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   return (
-    <div
+    <Box
       style={{
-        maxWidth: '115rem',
+        maxWidth: '100vw',
       }}
     >
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
-        itemsToShow={6}
+        itemsToShow={4}
+        itemsToScroll={4}
         forwardBtnProps={{
           style: {
             alignSelf: 'center',
-            background: 'black',
+            background: '#3182ce',
             border: 'none',
             borderRadius: '50%',
             color: 'white',
@@ -41,7 +42,7 @@ export const CarouselCast: FC<Props> = ({ cast }) => {
         backwardBtnProps={{
           style: {
             alignSelf: 'center',
-            background: 'black',
+            background: '#3182ce',
             border: 'none',
             borderRadius: '50%',
             color: 'white',
@@ -67,6 +68,6 @@ export const CarouselCast: FC<Props> = ({ cast }) => {
           )
         })}
       </ReactSimplyCarousel>
-    </div>
+    </Box>
   )
 }

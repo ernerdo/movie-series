@@ -5,11 +5,10 @@ interface Props {
   path: string
 }
 export const CarouselImage: FC<Props> = ({ path }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const handleImageLoad = () => {
     setIsLoading(false)
   }
-
-  const [isLoading, setIsLoading] = useState(true)
 
   return (
     <Skeleton isLoaded={!isLoading}>
