@@ -9,4 +9,5 @@ export interface Movie {
   backdrop_path: string
   poster_path: string
   genres: Genres[]
+  vote_average: number
 }

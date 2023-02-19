@@ -16,13 +16,6 @@ export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
-        // containerProps={{
-        //   style: {
-        //     width: '100%',
-        //     justifyContent: 'space-between',
-        //     userSelect: 'text',
-        //   },
-        // }}
         itemsToShow={6}
         forwardBtnProps={{
           style: {

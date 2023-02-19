@@ -1,12 +1,13 @@
 import {
   Box,
+  Button,
   GridItem,
   Heading,
   HStack,
   Image,
   Stack,
-  Tag,
   Text,
+  Flex,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -19,8 +20,8 @@ import {
 import { CarouselCast, CarouselMovies } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
-import { Movie } from '../../models/movies.model'
 import { Cast } from '../../models/casts.model'
+import { Movie } from '../../models/movies.model'
 
 const MovieDetail = () => {
   const [movie, setMovie] = useState<Movie>()
@@ -30,12 +31,10 @@ const MovieDetail = () => {
 
   useEffect(() => {
     getMovieDetails(Number(id)).then((response) => {
-      console.info('getMovieDetails', response)
       if (!response) return
       setMovie(response)
     })
     getSimilarMovies(Number(id)).then((response) => {
-      console.info('getSimilarMovies', response)
       if (!response) return
       const similarMoviesWithBackdrop: Movie[] = response?.results.filter(
         (movie: Movie, index: number, array: Movie[]) =>
@@ -45,7 +44,6 @@ const MovieDetail = () => {
       setSimilarMovies(similarMoviesWithBackdrop)
     })
     getCast(Number(id)).then((response) => {
-      console.info('getCast', response)
       if (!response) return
       const castUniqueWithBackdrop: Cast[] = response?.cast.filter(
         (cast: Cast, index: number, array: Cast[]) =>
@@ -58,30 +56,61 @@ const MovieDetail = () => {
 
   return (
     <DefaultLayout>
-      <GridItem pl="2" bg={'gray.300'} area={'main'}>
-        <Heading>Movie Detail</Heading>
+      <GridItem bg={'whiteAlpha.100'} area={'main'}>
         {movie && (
           <Stack>
-            <Box h={`400px`} w={`700px`}>
+            <Box>
               <Image
                 objectFit={`cover`}
+                objectPosition={`top`}
+                m={`auto`}
+                maxH={`80vh`}
+                w={`100%`}
+                alt={movie.title}
                 src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`}
               />
             </Box>
-            <Heading>{movie.title}</Heading>
-            <Text>{movie.overview}</Text>
-            <HStack>
-              {movie.genres &&
-                movie.genres.map((genre) => (
-                  <Box key={genre.id}>
-                    <Tag>{genre.name}</Tag>
-                  </Box>
-                ))}
-            </HStack>
-            <Heading>Reparto</Heading>
-            <CarouselCast cast={cast} />
-            <Heading>Similar Movies</Heading>
-            <CarouselMovies similarMovies={similarMovies} />
+            <Stack px={`10%`}>
+              <Flex justifyContent={`space-between`} mb={5}>
+                <Heading
+                  size={`3xl`}
+                  fontSize={`clamp(2rem,3vw,3.5rem)`}
+                  color={`black`}
+                >
+                  {movie.title}
+                </Heading>
+                <Heading size={`3xl`} color={`black`}>
+                  {movie.vote_average}
+                </Heading>
+              </Flex>
+              <Text fontSize={`xl`} color={`black`}>
+                {movie.overview}
+              </Text>
+              <HStack gap={5} mb={5}>
+                {movie.genres &&
+                  movie.genres.map((genre) => (
+                    <Box key={genre.id}>
+                      <Button
+                        colorScheme="blue"
+                        size="md"
+                        onClick={() => console.log(genre.name)}
+                        _hover={{
+                          bg: 'blue.500',
+                          color: 'white',
+                          transform: 'scale(1.05)',
+                          translateY: '-2px',
+                        }}
+                      >
+                        {genre.name}
+                      </Button>
+                    </Box>
+                  ))}
+              </HStack>
+              <Heading color={`black`}>Cast</Heading>
+              <CarouselCast cast={cast} />
+              <Heading color={`black`}>Related movies</Heading>
+              <CarouselMovies similarMovies={similarMovies} />
+            </Stack>
           </Stack>
         )}
       </GridItem>
