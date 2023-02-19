@@ -1,15 +1,15 @@
-import { Container, Image } from '@chakra-ui/react'
 import { FC, useState } from 'react'
 import ReactSimplyCarousel from 'react-simply-carousel'
+import { Container, Image } from '@chakra-ui/react'
 
 import { API_IMAGE_URL } from '../../config'
-import { Movie } from '../../models/movies.model'
+import { Cast } from '../../models/casts.model'
 
 interface Props {
-  similarMovies: Movie[]
+  cast: Cast[]
 }
 
-export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
+export const CarouselCast: FC<Props> = ({ cast }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   return (
     <div>
@@ -58,16 +58,18 @@ export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
         }}
         infinite={true}
       >
-        {similarMovies.map((movie, index) => {
+        {cast.map((cast, index) => {
           return (
-            <Container key={`similar-movie-viewer-${index}`}>
+            <Container key={`cast-viewer-${index}`}>
               <Image
                 objectFit="cover"
                 maxH={{ base: 'md' }}
                 maxW={{ base: 'md' }}
                 borderRadius={`10px`}
-                src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
+                src={`${API_IMAGE_URL}/w1280${cast.profile_path}`}
+                alt={cast.name}
               />
+              <p>{cast.name}</p>
             </Container>
           )
         })}

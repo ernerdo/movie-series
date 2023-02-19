@@ -16,7 +16,7 @@ import {
   getMovieDetails,
   getSimilarMovies,
 } from '../../client/MovieApiClient'
-import { CarouselMovies } from '../../components'
+import { CarouselCast, CarouselMovies } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Movie } from '../../models/movies.model'
@@ -79,6 +79,7 @@ const MovieDetail = () => {
                 ))}
             </HStack>
             <Heading>Reparto</Heading>
+            <CarouselCast cast={cast} />
             {/* {cast.length > 0 && (
               <HStack>
                 {cast.map((actor) => (
@@ -97,22 +98,6 @@ const MovieDetail = () => {
             )} */}
             <Heading>Similar Movies</Heading>
             <CarouselMovies similarMovies={similarMovies} />
-
-            {/* {similarMovies.length > 0 && (
-              <HStack>
-                {similarMovies.map((movie: Movie) => (
-                  <Box key={movie.id}>
-                    <Box>
-                      <Image
-                        objectFit={'cover'}
-                        src={`${API_IMAGE_URL}/w1280/${movie?.backdrop_path}`}
-                      />
-                    </Box>
-                    <Text>{movie.title}</Text>
-                  </Box>
-                ))}
-              </HStack>
-            )} */}
           </Stack>
         )}
       </GridItem>
