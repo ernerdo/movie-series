@@ -1,0 +1,96 @@
+import { Card, Box, Image, Container } from '@chakra-ui/react'
+import { FC, useState } from 'react'
+import ReactSimplyCarousel from 'react-simply-carousel'
+
+import { API_IMAGE_URL } from '../../config'
+import { Movie } from '../../models/movies.model'
+
+interface Props {
+  similarMovies: Movie[]
+}
+
+export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+  return (
+    <div>
+      <ReactSimplyCarousel
+        activeSlideIndex={activeSlideIndex}
+        onRequestChange={setActiveSlideIndex}
+        containerProps={{
+          style: {
+            width: '100%',
+            justifyContent: 'space-between',
+            userSelect: 'text',
+          },
+        }}
+        itemsToShow={6}
+        forwardBtnProps={{
+          style: {
+            alignSelf: 'center',
+            background: 'black',
+            border: 'none',
+            borderRadius: '50%',
+            color: 'white',
+            cursor: 'pointer',
+            fontSize: '20px',
+            height: 30,
+            lineHeight: 1,
+            textAlign: 'center',
+            width: 30,
+          },
+          children: <span>{`>`}</span>,
+        }}
+        backwardBtnProps={{
+          style: {
+            alignSelf: 'center',
+            background: 'black',
+            border: 'none',
+            borderRadius: '50%',
+            color: 'white',
+            cursor: 'pointer',
+            fontSize: '20px',
+            height: 30,
+            lineHeight: 1,
+            textAlign: 'center',
+            width: 30,
+          },
+          children: <span>{`<`}</span>,
+        }}
+        // responsiveProps={[
+        //   {
+        //     itemsToShow: 6,
+        //     itemsToScroll: 2,
+        //     minWidth: 1200,
+        //   },
+        //   {
+        //     itemsToShow: 5,
+        //     itemsToScroll: 2,
+        //     minWidth: 800,
+        //     maxWidth: 1199,
+        //   },
+        //   {
+        //     itemsToShow: 3,
+        //     itemsToScroll: 2,
+        //     minWidth: 0,
+        //     maxWidth: 799,
+        //   },
+        // ]}
+        infinite={true}
+      >
+        {similarMovies.map((movie, index) => {
+          return (
+            <Container key={`card-viewer-${index}`}>
+              <Image
+                objectFit="cover"
+                maxH={{ base: 'md' }}
+                maxW={{ base: 'md' }}
+                borderRadius={`10px`}
+                src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
+              />
+            </Container>
+          )
+        })}
+      </ReactSimplyCarousel>
+    </div>
+  )
+}

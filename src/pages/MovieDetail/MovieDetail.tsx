@@ -16,26 +16,12 @@ import {
   getMovieDetails,
   getSimilarMovies,
 } from '../../client/MovieApiClient'
+import { CarouselMovies } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
+import { Movie } from '../../models/movies.model'
+import { Cast } from '../../models/casts.model'
 
-interface Genres {
-  id: number
-  name: string
-}
-interface Movie {
-  id: number
-  title: string
-  overview: string
-  backdrop_path: string
-  genres: Genres[]
-}
-interface Cast {
-  id: number
-  name: string
-  profile_path: string
-  character: string
-}
 const MovieDetail = () => {
   const [movie, setMovie] = useState<Movie>()
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([])
@@ -54,7 +40,7 @@ const MovieDetail = () => {
       const similarMoviesWithBackdrop: Movie[] = response?.results.filter(
         (movie: Movie, index: number, array: Movie[]) =>
           array.findIndex((m) => m.id === movie.id) === index &&
-          movie.backdrop_path
+          movie.poster_path
       )
       setSimilarMovies(similarMoviesWithBackdrop)
     })
@@ -76,8 +62,11 @@ const MovieDetail = () => {
         <Heading>Movie Detail</Heading>
         {movie && (
           <Stack>
-            <Box>
-              <Image src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`} />
+            <Box h={`400px`} w={`700px`}>
+              <Image
+                objectFit={`cover`}
+                src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`}
+              />
             </Box>
             <Heading>{movie.title}</Heading>
             <Text>{movie.overview}</Text>
@@ -90,7 +79,7 @@ const MovieDetail = () => {
                 ))}
             </HStack>
             <Heading>Reparto</Heading>
-            {cast.length > 0 && (
+            {/* {cast.length > 0 && (
               <HStack>
                 {cast.map((actor) => (
                   <Box key={`cast-${actor.id}`}>
@@ -105,9 +94,11 @@ const MovieDetail = () => {
                   </Box>
                 ))}
               </HStack>
-            )}
+            )} */}
             <Heading>Similar Movies</Heading>
-            {similarMovies.length > 0 && (
+            <CarouselMovies similarMovies={similarMovies} />
+
+            {/* {similarMovies.length > 0 && (
               <HStack>
                 {similarMovies.map((movie: Movie) => (
                   <Box key={movie.id}>
@@ -121,7 +112,7 @@ const MovieDetail = () => {
                   </Box>
                 ))}
               </HStack>
-            )}
+            )} */}
           </Stack>
         )}
       </GridItem>
