@@ -16,13 +16,13 @@ export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
-        containerProps={{
-          style: {
-            width: '100%',
-            justifyContent: 'space-between',
-            userSelect: 'text',
-          },
-        }}
+        // containerProps={{
+        //   style: {
+        //     width: '100%',
+        //     justifyContent: 'space-between',
+        //     userSelect: 'text',
+        //   },
+        // }}
         itemsToShow={6}
         forwardBtnProps={{
           style: {
@@ -56,6 +56,7 @@ export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
           },
           children: <span>{`<`}</span>,
         }}
+        easing="linear"
         infinite={true}
       >
         {similarMovies.map((movie, index) => {
@@ -63,8 +64,8 @@ export const CarouselMovies: FC<Props> = ({ similarMovies }) => {
             <Container key={`similar-movie-viewer-${index}`}>
               <Image
                 objectFit="cover"
-                maxH={{ base: 'md' }}
-                maxW={{ base: 'md' }}
+                maxH={{ base: 'sm' }}
+                maxW={{ base: 'sm' }}
                 borderRadius={`10px`}
                 src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
               />

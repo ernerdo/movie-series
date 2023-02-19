@@ -80,22 +80,6 @@ const MovieDetail = () => {
             </HStack>
             <Heading>Reparto</Heading>
             <CarouselCast cast={cast} />
-            {/* {cast.length > 0 && (
-              <HStack>
-                {cast.map((actor) => (
-                  <Box key={`cast-${actor.id}`}>
-                    <Box>
-                      <Image
-                        src={`${API_IMAGE_URL}/w1280/${actor?.profile_path}`}
-                        objectFit={'cover'}
-                      />
-                    </Box>
-                    <Text>{actor.name}</Text>
-                    <Text>{actor.character}</Text>
-                  </Box>
-                ))}
-              </HStack>
-            )} */}
             <Heading>Similar Movies</Heading>
             <CarouselMovies similarMovies={similarMovies} />
           </Stack>
