@@ -1,6 +1,6 @@
-import { PopularMovie } from '../../models/movies/populars.model'
+import { AllPopularMovie } from '../../models/movies/populars.model'
 
-export const initialPopularMovie: PopularMovie = {
+export const initialPopularMovie: AllPopularMovie = {
   page: 0,
   results: [],
   total_pages: 0,

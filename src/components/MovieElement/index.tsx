@@ -1,8 +1,19 @@
-import { Box, Button, Flex, Image } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  CircularProgress,
+  CircularProgressLabel,
+} from '@chakra-ui/react'
 import { API_IMAGE_URL } from '../../config'
 import { MovieElementComponent } from './MovieElement.model'
 
 const MovieElement = ({ movie }: MovieElementComponent) => {
+  const rate = !movie?.vote_average ? 0 : movie?.vote_average
+  const movieRate = rate * 10
+  const colorRate = movieRate > 7 ? 'green.300' : 'orange.400'
+
   return (
     <Flex as="section" direction="column" gap="5">
       <Flex direction="column">
@@ -22,15 +33,27 @@ const MovieElement = ({ movie }: MovieElementComponent) => {
       >
         See more
       </Button>
-      <Image
-        src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
-        alt="Movie Portada"
-        alignSelf="center"
-        w="200px"
-        h="300px"
-        bg="gray"
-        borderRadius="12px"
-      />
+
+      <Box w="max-content" mx="auto" position="relative">
+        <Image
+          src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
+          alt="Movie Portada"
+          w="200px"
+          h="300px"
+          bg="gray"
+          borderRadius="12px"
+        />
+        <CircularProgress
+          as="span"
+          value={movieRate}
+          color={colorRate}
+          position="absolute"
+          bottom="1.5"
+          right="1.5"
+        >
+          <CircularProgressLabel color="#fff">{rate}</CircularProgressLabel>
+        </CircularProgress>
+      </Box>
     </Flex>
   )
 }

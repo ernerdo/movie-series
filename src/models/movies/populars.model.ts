@@ -1,11 +1,11 @@
-export interface PopularMovie {
+export interface AllPopularMovie {
   page: number
-  results: Result[]
+  results: PopularMovie[]
   total_pages: number
   total_results: number
 }
 
-interface Result {
+export interface PopularMovie {
   adult: boolean
   backdrop_path: string
   genre_ids: number[]

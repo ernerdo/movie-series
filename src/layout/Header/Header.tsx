@@ -1,25 +1,36 @@
-import { Box, Center, Flex, Image, Input, Spacer } from '@chakra-ui/react'
+import { Flex, Text, Input, GridItem } from '@chakra-ui/react'
 
-const Header = () => {
+type Props = {
+  children?: React.ReactNode
+}
+
+const Header = ({ children }: Props) => {
   return (
-    <Box as="header" mb="12px">
-      <Flex alignItems="center">
-        <Center w="32px" h="32px">
-          <Image
-            borderRadius="full"
-            boxSize="32px"
-            src="https://bit.ly/dan-abramov"
-            alt="Dan Abramov"
-          />
-        </Center>
-        <Spacer />
+    <GridItem
+      as="header"
+      area={'header'}
+      display="flex"
+      flexDirection="column"
+      gap="3"
+      px="2"
+      pt="4"
+      pb="2"
+      w="100%"
+      overflow="hidden"
+    >
+      <Flex justifyContent="space-around" alignItems="center" mb="16px">
+        <Text as="h2" color="#fff">
+          Project Movie
+        </Text>
         <Input
-          w="85%"
+          w="70%"
           h="30px"
+          color="#fff"
           placeholder="Search a movie, serie, stream..."
         />
       </Flex>
-    </Box>
+      {children}
+    </GridItem>
   )
 }
 export default Header

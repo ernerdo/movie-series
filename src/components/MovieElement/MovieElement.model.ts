@@ -1,9 +1,5 @@
-export interface MovieElementComponent {
-  movie: Movie
-}
+import { PopularMovie } from '../../models/movies/populars.model'
 
-interface Movie {
-  title: string
-  overview: string
-  poster_path: string
+export interface MovieElementComponent {
+  movie: PopularMovie
 }

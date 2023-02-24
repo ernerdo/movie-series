@@ -12,36 +12,18 @@ const DefaultLayout = ({ children }: Props) => {
       templateAreas={`"header"
                     "main"
                     "footer"`}
-      gridTemplateRows={'100px 1fr 50px'}
+      gridTemplateRows={'120px 1fr 50px'}
       gridTemplateColumns={'100%'}
-      h="100vh"
       gap="1"
+      bg="transparent"
       color="blackAlpha.700"
-      bg="#5a5a5a"
       fontWeight="bold"
     >
-      <GridItem
-        area={'header'}
-        px="2"
-        py="2"
-        bg="transparent"
-        w="100%"
-        overflow="hidden"
-      >
-        <Header />
+      <Header>
         <Categories />
-      </GridItem>
+      </Header>
       {children}
-      <GridItem
-        p="2"
-        bg="blue.300"
-        area={'footer'}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Footer />
-      </GridItem>
+      <Footer />
     </Grid>
   )
 }
