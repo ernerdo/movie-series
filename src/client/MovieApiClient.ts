@@ -12,6 +12,13 @@ const baseApiClient = axios.create({
   },
 })
 
+
+/**
+ * Obtiene el detalle de una pelicula desde la API
+ *
+ * @param id id de la pelicula
+ * @returns
+ */
 export const getMovieDetails = async (id: number) => {
   try {
     const response = await baseApiClient.get(`/movie/${id}`)
@@ -21,6 +28,12 @@ export const getMovieDetails = async (id: number) => {
   }
 }
 
+/**
+ * Obtiene un listado de las peliculas similares desde la API
+ *
+ * @param id id de la pelicula
+ * @returns
+ */
 export const getSimilarMovies = async (id: number) => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/similar`)
@@ -30,6 +43,12 @@ export const getSimilarMovies = async (id: number) => {
   }
 }
 
+/**
+ * Obtiene un Cast  desde la API
+ *
+ * @param id cast
+ * @returns
+ */
 export const getCast = async (id: number) => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/credits`)
@@ -39,6 +58,12 @@ export const getCast = async (id: number) => {
   }
 }
 
+/**
+ * Obtiene una imagen de la pelicula desde la API
+ *
+ * @param id de la pelicula
+ * @returns una imagen de la pelicula
+ */
 export const getImages = async (id: number | string) => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/images`)
@@ -48,9 +73,29 @@ export const getImages = async (id: number | string) => {
   }
 }
 
+/**
+ * Obtiene un listado de las peliculas populares desde la API
+ *
+ * @returns Peliculas populares
+ */
 export const getPopularMovies = async () => {
   try {
     const response = await baseApiClient.get(`/movie/popular`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+/**
+ * Obtiene un listado de videos desde la API
+ *
+ * @param id id del video
+ * @returns Array de videos
+ */
+export const getMovieVideos = async (id: number) => {
+  try {
+    const response = await baseApiClient.get(`/movie/${id}/videos`)
     return response.data
   } catch (error) {
     console.error(error)

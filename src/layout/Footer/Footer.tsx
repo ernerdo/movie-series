@@ -29,4 +29,4 @@ const Footer = () => {
     </GridItem>
   )
 }
-export default Footer
+export { Footer }
