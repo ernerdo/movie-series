@@ -1,7 +1,5 @@
 import React from 'react'
-import { Grid, GridItem } from '@chakra-ui/react'
-import { Footer, Header } from '../../layout'
-import { Categories } from '../../components/categories'
+import { Grid } from '@chakra-ui/react'
 
 type Props = {
   children?: React.ReactNode
@@ -19,11 +17,7 @@ const DefaultLayout = ({ children }: Props) => {
       color="blackAlpha.700"
       fontWeight="bold"
     >
-      <Header>
-        <Categories />
-      </Header>
       {children}
-      <Footer />
     </Grid>
   )
 }

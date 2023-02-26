@@ -37,7 +37,7 @@ const MovieElement = ({ movie }: MovieElementComponent) => {
       <Box w="max-content" mx="auto" position="relative">
         <Image
           src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
-          alt="Movie Portada"
+          alt="Movie"
           w="200px"
           h="300px"
           bg="gray"

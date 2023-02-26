@@ -1,8 +1,8 @@
-import { Category } from '../../models/categories.model'
-import { AllPopularMovie } from '../../models/movies/populars.model'
+import {  Genres } from '../../models/categories/categories.model'
+import { AllPopularMovie } from '../../models/movies/popular.model'
 
-export interface MovieCarousel {
-  categories: Category[]
+export interface MovieCarouselProps {
+  categories: Genres
   movies: AllPopularMovie
   title: string
 }

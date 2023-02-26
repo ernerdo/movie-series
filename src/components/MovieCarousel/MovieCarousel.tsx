@@ -1,8 +1,7 @@
 import { Flex, Box, Tab, Tabs, TabList, Image } from '@chakra-ui/react'
+import { FC } from 'react'
 import { API_IMAGE_URL } from '../../config'
-import { Category } from '../../models/categories.model'
-import { MovieCarousel } from './carousel-component.model'
-// TODO: Eliminar el componente React-Carousel y Swipper si no se va a usar
+import { MovieCarouselProps } from './carousel-component.model'
 // import Carousel from 'react-multi-carousel'
 // import 'react-multi-carousel/lib/styles.css'
 // import './MovieCarousel.css'
@@ -26,7 +25,11 @@ import { MovieCarousel } from './carousel-component.model'
 //   },
 // }
 
-const CarouselMovie = ({ categories, movies, title }: MovieCarousel) => {
+const CarouselMovie: FC<MovieCarouselProps> = ({
+  categories,
+  movies,
+  title,
+}) => {
   return (
     <Flex as="section" direction="column" py="2" overflow="hidden">
       <Box as="h2" color="var(--text-color)" fontSize="1.2rem">
@@ -34,8 +37,10 @@ const CarouselMovie = ({ categories, movies, title }: MovieCarousel) => {
       </Box>
       <Tabs as="nav" mb="5" overflowX="scroll">
         <TabList>
-          {categories.map((category: Category, i: number) => (
-            <Tab key={i}>{category.name}</Tab>
+          {categories.genres?.map((category, i) => (
+            <Tab key={i} color="#fff">
+              {category.name}
+            </Tab>
           ))}
         </TabList>
       </Tabs>

@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import { API_KEY, API_URL } from '../config'
 
 const baseApiClient = axios.create({
@@ -12,12 +11,11 @@ const baseApiClient = axios.create({
   },
 })
 
-
 /**
- * Obtiene el detalle de una pelicula desde la API
+ * Gets the detail of a movie from the API
  *
- * @param id id de la pelicula
- * @returns
+ * @param id id movie
+ * @returns a details movie
  */
 export const getMovieDetails = async (id: number) => {
   try {
@@ -29,10 +27,10 @@ export const getMovieDetails = async (id: number) => {
 }
 
 /**
- * Obtiene un listado de las peliculas similares desde la API
+ * Gets a list of similar movies from the API
  *
- * @param id id de la pelicula
- * @returns
+ * @param id id movie
+ * @returns a similar movie
  */
 export const getSimilarMovies = async (id: number) => {
   try {
@@ -44,10 +42,10 @@ export const getSimilarMovies = async (id: number) => {
 }
 
 /**
- * Obtiene un Cast  desde la API
+ * Gets a Cast from the API
  *
- * @param id cast
- * @returns
+ * @param id id cast
+ * @returns a cast
  */
 export const getCast = async (id: number) => {
   try {
@@ -59,10 +57,10 @@ export const getCast = async (id: number) => {
 }
 
 /**
- * Obtiene una imagen de la pelicula desde la API
+ * Gets an image of the movie from the API
  *
- * @param id de la pelicula
- * @returns una imagen de la pelicula
+ * @param id id movie
+ * @returns an image movie
  */
 export const getImages = async (id: number | string) => {
   try {
@@ -74,9 +72,9 @@ export const getImages = async (id: number | string) => {
 }
 
 /**
- * Obtiene un listado de las peliculas populares desde la API
+ * Gets a list of popular movies from the API
  *
- * @returns Peliculas populares
+ * @returns popular movies
  */
 export const getPopularMovies = async () => {
   try {
@@ -88,10 +86,10 @@ export const getPopularMovies = async () => {
 }
 
 /**
- * Obtiene un listado de videos desde la API
+ * Gets a list of videos from the API
  *
- * @param id id del video
- * @returns Array de videos
+ * @param id id video
+ * @returns a movie video
  */
 export const getMovieVideos = async (id: number) => {
   try {
