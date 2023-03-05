@@ -1,7 +1,8 @@
 import { Flex, Text, Input, GridItem } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 
 type Props = {
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const Header = ({ children }: Props) => {

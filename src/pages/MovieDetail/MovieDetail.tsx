@@ -19,8 +19,9 @@ import {
   getMovieVideos,
   getSimilarMovies,
 } from '../../client/MovieApiClient'
-import { CarouselCast, CarouselMovies, Iframe } from '../../components'
+import { CarouselSwiper, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
+import { Footer } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts.model'
 import { Movie, Trailer } from '../../models/movies.model'
@@ -145,17 +146,18 @@ const MovieDetail = () => {
                   ))}
               </HStack>
               <Heading color={`black`}>Cast</Heading>
-              <CarouselCast cast={cast} />
+              <CarouselSwiper cast={cast} />
 
               <Heading color={`black`}>Trailer</Heading>
               {trailer && <Iframe trailer={trailer} />}
 
               <Heading color={`black`}>Related movies</Heading>
-              <CarouselMovies similarMovies={similarMovies} />
+              <CarouselSwiper similarMovies={similarMovies} />
             </Stack>
           </Stack>
         )}
       </GridItem>
+      <Footer />
     </DefaultLayout>
   )
 }

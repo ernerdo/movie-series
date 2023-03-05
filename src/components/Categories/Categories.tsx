@@ -1,6 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { FC } from 'react'
-import { Genre } from '../../models/categories/categories.model'
 import { CategoriesProps } from './categories.model'
 
 const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
@@ -15,7 +14,7 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
   })
 
   return (
-    <Flex as="nav" gap="12px" p="1" overflow="scroll hidden">
+    <Flex as="nav" gap="12px" p="1" overflow={`auto`} overflowY={`hidden`}>
       {genres?.map((category, i) => (
         <Box
           display="inline-block"
