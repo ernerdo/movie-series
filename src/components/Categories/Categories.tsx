@@ -1,6 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { FC } from 'react'
-import { Genre } from '../../models/categories/categories.model'
 import { CategoriesProps } from './categories.model'
 
 const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
