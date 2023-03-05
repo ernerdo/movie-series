@@ -59,14 +59,12 @@ const MovieDetail = () => {
     })
     getMovieVideos(Number(id)).then((response) => {
       if (!response) return
-      const youTube = response?.results.filter(
-        (video: Trailer) =>
-          video.site === 'YouTube' &&
-          video.type === 'Trailer' &&
-          video.name === 'Official Trailer'
+      const youTube = response?.results.find(
+        (video: Trailer) => video.type === 'Trailer'
       )
-      setTrailer(youTube[0])
+      setTrailer(youTube)
     })
+    window.scrollTo({ behavior: 'smooth', top: 0 })
   }, [id])
   const handleImageLoad = () => {
     setIsLoading(false)
@@ -76,7 +74,7 @@ const MovieDetail = () => {
     <DefaultLayout>
       <GridItem bg={'whiteAlpha.100'} area={'main'}>
         {movie && (
-          <Stack>
+          <Stack id={`#top`}>
             <Box
               position={`relative`}
               _before={{
@@ -132,7 +130,7 @@ const MovieDetail = () => {
                 </Text>
               </Skeleton>
               <Skeleton isLoaded={!isLoading}>
-                <HStack gap={5} mb={5}>
+                <HStack gap={5} mb={5} wrap={`wrap`}>
                   {movie.genres &&
                     movie.genres.map((genre) => (
                       <Box key={genre.id}>
