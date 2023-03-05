@@ -111,48 +111,66 @@ const MovieDetail = () => {
             </Box>
             <Stack px={`10%`}>
               <Flex justifyContent={`space-between`} mb={5}>
-                <Heading
-                  size={`3xl`}
-                  fontSize={`clamp(2rem,3vw,3.5rem)`}
-                  color={`black`}
-                >
-                  {movie.title}
-                </Heading>
-                <Heading size={`3xl`} color={`black`}>
-                  {movie.vote_average}
-                </Heading>
+                <Skeleton isLoaded={!isLoading}>
+                  <Heading
+                    size={`3xl`}
+                    fontSize={`clamp(2rem,3vw,3.5rem)`}
+                    color={`black`}
+                  >
+                    {movie.title}
+                  </Heading>
+                </Skeleton>
+                <Skeleton isLoaded={!isLoading}>
+                  <Heading size={`3xl`} color={`black`}>
+                    {movie.vote_average}
+                  </Heading>
+                </Skeleton>
               </Flex>
-              <Text fontSize={`xl`} color={`black`}>
-                {movie.overview}
-              </Text>
-              <HStack gap={5} mb={5}>
-                {movie.genres &&
-                  movie.genres.map((genre) => (
-                    <Box key={genre.id}>
-                      <Button
-                        colorScheme="blue"
-                        size="md"
-                        onClick={() => console.log(genre.name)}
-                        _hover={{
-                          bg: 'blue.500',
-                          color: 'white',
-                          transform: 'scale(1.05)',
-                          translateY: '-2px',
-                        }}
-                      >
-                        {genre.name}
-                      </Button>
-                    </Box>
-                  ))}
-              </HStack>
-              <Heading color={`black`}>Cast</Heading>
-              <CarouselSwiper cast={cast} />
-
-              <Heading color={`black`}>Trailer</Heading>
-              {trailer && <Iframe trailer={trailer} />}
-
-              <Heading color={`black`}>Related movies</Heading>
-              <CarouselSwiper similarMovies={similarMovies} />
+              <Skeleton isLoaded={!isLoading}>
+                <Text fontSize={`xl`} color={`black`}>
+                  {movie.overview}
+                </Text>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <HStack gap={5} mb={5}>
+                  {movie.genres &&
+                    movie.genres.map((genre) => (
+                      <Box key={genre.id}>
+                        <Button
+                          colorScheme="blue"
+                          size="md"
+                          onClick={() => console.log(genre.name)}
+                          _hover={{
+                            bg: 'blue.500',
+                            color: 'white',
+                            transform: 'scale(1.05)',
+                            translateY: '-2px',
+                          }}
+                        >
+                          {genre.name}
+                        </Button>
+                      </Box>
+                    ))}
+                </HStack>
+              </Skeleton>
+              {cast && (
+                <>
+                  <Heading color={`black`}>Cast</Heading>
+                  <CarouselSwiper cast={cast} />
+                </>
+              )}
+              {trailer && (
+                <>
+                  <Heading color={`black`}>Trailer</Heading>
+                  <Iframe trailer={trailer} />
+                </>
+              )}
+              {similarMovies && (
+                <>
+                  <Heading color={`black`}>Related movies</Heading>
+                  <CarouselSwiper similarMovies={similarMovies} />
+                </>
+              )}
             </Stack>
           </Stack>
         )}
