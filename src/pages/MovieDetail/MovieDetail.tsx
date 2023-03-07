@@ -126,6 +126,11 @@ const MovieDetail = () => {
               </Flex>
               <Skeleton isLoaded={!isLoading}>
                 <Text fontSize={`xl`} color={`black`}>
+                  {movie.release_date}
+                </Text>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <Text fontSize={`xl`} color={`black`}>
                   {movie.overview}
                 </Text>
               </Skeleton>
