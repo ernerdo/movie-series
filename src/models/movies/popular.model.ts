@@ -1,10 +1,3 @@
-export interface AllPopularMovie {
-  page: number
-  results: PopularMovie[]
-  total_pages: number
-  total_results: number
-}
-
 export interface PopularMovie {
   adult: boolean
   backdrop_path: string
@@ -21,4 +14,11 @@ export interface PopularMovie {
   video: boolean
   vote_average: number
   vote_count: number
+}
+
+export interface AllPopularMovie {
+  page: number
+  results: PopularMovie[]
+  total_pages: number
+  total_results: number
 }
