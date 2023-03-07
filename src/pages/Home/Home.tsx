@@ -4,22 +4,22 @@ import { GridItem, Box } from '@chakra-ui/react'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Footer, Header } from '../../layout'
 
-import { CarouselMovie } from '../../components/MovieCarousel/MovieCarousel'
-import { MovieElement } from '../../components/MovieElement/MovieElement'
+// import { CarouselMovie } from '../../components/MovieCarousel/MovieCarousel'
+// import { MovieElement } from '../../components/MovieElement/MovieElement'
 import { Categories } from '../../components/Categories/Categories'
 
-import { AllPopularMovie } from '../../models/movies/popular.model'
+import {
+  AllPopularMovie,
+  PopularMovie,
+} from '../../models/movies/popular.model'
 import { Genres } from '../../models/categories/categories.model'
 
 import { getPopularMovies } from '../../client/MovieApiClient'
 import { getGenreMovieList } from '../../client/MovieGenreApi'
+import { CarouselMovie } from '../../layout/Carousel'
+import { API_IMAGE_URL } from '../../config'
 
-const initialPopularMovie: AllPopularMovie = {
-  page: 0,
-  results: [],
-  total_pages: 0,
-  total_results: 0,
-}
+const initialPopularMovie: PopularMovie[] = []
 
 const initialGenres: Genres = {
   genres: [{ id: 0, name: '' }],
@@ -32,14 +32,18 @@ const Home = () => {
     confirm: false,
   })
   const [popularMovies, setPopularMovies] =
-    useState<AllPopularMovie>(initialPopularMovie)
+    useState<PopularMovie[]>(initialPopularMovie)
   const [genres, setCategoriesList] = useState<Genres>(initialGenres)
 
   useEffect(() => {
     if (state.loading) {
       setTimeout(() => {
         getPopularMovies().then((movies: AllPopularMovie) => {
-          setPopularMovies(movies)
+          const movieFormatted = movies.results.map((movie) => ({
+            ...movie,
+            src: `${API_IMAGE_URL}/original/${movie.poster_path}`,
+          }))
+          setPopularMovies(movieFormatted)
         })
         getGenreMovieList().then((genre) => {
           setCategoriesList(genre)
@@ -70,7 +74,8 @@ const Home = () => {
           flexDir="column"
           gap="24px"
         >
-          <CarouselMovie
+          <CarouselMovie movieList={popularMovies}></CarouselMovie>
+          {/* <CarouselMovie
             title="Most Popular"
             movies={popularMovies}
             categories={genres}
@@ -92,7 +97,7 @@ const Home = () => {
             title="Recommendations"
             movies={popularMovies}
             categories={genres}
-          />
+          /> */}
         </GridItem>
         <Footer />
       </DefaultLayout>
