@@ -11,7 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import {
   getCast,
@@ -27,6 +27,7 @@ import { Cast } from '../../models/casts.model'
 import { Movie, Trailer } from '../../models/movies.model'
 
 const MovieDetail = () => {
+  const navigate = useNavigate()
   const [movie, setMovie] = useState<Movie>()
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([])
   const [cast, setCast] = useState<Cast[]>([])
@@ -37,6 +38,9 @@ const MovieDetail = () => {
   useEffect(() => {
     getMovieDetails(Number(id)).then((response) => {
       if (!response) return
+      if (response?.response?.data?.status_code === 34) {
+        navigate('/')
+      }
       setMovie(response)
     })
     getSimilarMovies(Number(id)).then((response) => {
