@@ -4,8 +4,6 @@ import { GridItem, Box } from '@chakra-ui/react'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Footer, Header } from '../../layout'
 
-// import { CarouselMovie } from '../../components/MovieCarousel/MovieCarousel'
-// import { MovieElement } from '../../components/MovieElement/MovieElement'
 import { Categories } from '../../components/Categories/Categories'
 
 import {
@@ -16,8 +14,9 @@ import { Genres } from '../../models/categories/categories.model'
 
 import { getPopularMovies } from '../../client/MovieApiClient'
 import { getGenreMovieList } from '../../client/MovieGenreApi'
-import { CarouselMovie } from '../../layout/Carousel'
 import { API_IMAGE_URL } from '../../config'
+import { CarouselMovies } from '../../layout/CarouselMovies'
+import { MoviePoster } from '../../components'
 
 const initialPopularMovie: PopularMovie[] = []
 
@@ -72,32 +71,25 @@ const Home = () => {
           p="4"
           display="flex"
           flexDir="column"
-          gap="24px"
+          gap="60px"
         >
-          <CarouselMovie movieList={popularMovies}></CarouselMovie>
-          {/* <CarouselMovie
+          <CarouselMovies
             title="Most Popular"
+            genres={genres}
             movies={popularMovies}
-            categories={genres}
           />
-          {!state.loading && (
-            <MovieElement movie={popularMovies.results[0]}></MovieElement>
-          )}
-
-          <CarouselMovie
+          {!state.loading && <MoviePoster movie={popularMovies[1]} />}
+          <CarouselMovies
             title="This Month"
+            genres={genres}
             movies={popularMovies}
-            categories={genres}
           />
-          {!state.loading && (
-            <MovieElement movie={popularMovies.results[2]}></MovieElement>
-          )}
-
-          <CarouselMovie
+          {!state.loading && <MoviePoster movie={popularMovies[2]} />}
+          <CarouselMovies
             title="Recommendations"
+            genres={genres}
             movies={popularMovies}
-            categories={genres}
-          /> */}
+          />
         </GridItem>
         <Footer />
       </DefaultLayout>

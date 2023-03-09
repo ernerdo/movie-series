@@ -6,10 +6,14 @@ import {
   CircularProgress,
   CircularProgressLabel,
 } from '@chakra-ui/react'
-import { API_IMAGE_URL } from '../../config'
-import { MovieElementComponent } from './MovieElement.model'
+import { FC } from 'react'
+import { PopularMovie } from '../../models/movies/popular.model'
 
-const MovieElement = ({ movie }: MovieElementComponent) => {
+interface MoviePosterComponent {
+  movie: PopularMovie
+}
+
+const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
   const rate = !movie?.vote_average ? 0 : movie?.vote_average
   const movieRate = rate * 10
   const colorRate = movieRate > 7 ? 'green.300' : 'orange.400'
@@ -36,7 +40,7 @@ const MovieElement = ({ movie }: MovieElementComponent) => {
 
       <Box w="max-content" mx="auto" position="relative">
         <Image
-          src={`${API_IMAGE_URL}/original/${movie?.poster_path}`}
+          src={`${movie?.src}`}
           alt="Movie"
           w="200px"
           h="300px"
@@ -58,4 +62,4 @@ const MovieElement = ({ movie }: MovieElementComponent) => {
   )
 }
 
-export { MovieElement }
+export { MoviePoster }
