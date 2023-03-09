@@ -21,7 +21,7 @@ import {
 } from '../../client/MovieApiClient'
 import { CarouselSwiper, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
-import { Footer } from '../../layout'
+import { Footer, Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts.model'
 import { Movie, Trailer } from '../../models/movies.model'
@@ -76,6 +76,7 @@ const MovieDetail = () => {
 
   return (
     <DefaultLayout>
+      <Header />
       <GridItem bg={'whiteAlpha.100'} area={'main'}>
         {movie && (
           <Stack id={`#top`}>
