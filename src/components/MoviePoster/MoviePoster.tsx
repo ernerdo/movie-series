@@ -21,16 +21,16 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
   return (
     <Flex as="section" direction="column" gap="5">
       <Flex direction="column">
-        <Box as="h2" color="#fff" fontSize="1.4rem">
+        <Box as="h2" color="white" fontSize="1.4rem">
           {movie?.title}
         </Box>
-        <Box as="p" color="#fff" fontSize="1rem">
+        <Box as="p" color="white" fontSize="1rem">
           {movie?.overview.slice(0, 100).concat('...')}
         </Box>
       </Flex>
       <Button
-        bg="var(--navy-blue)"
-        color="var(--white)"
+        bg="navyBlue"
+        color="white"
         size="md"
         alignSelf="center"
         order="2"
@@ -44,7 +44,6 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
           alt="Movie"
           w="200px"
           h="300px"
-          bg="gray"
           borderRadius="12px"
         />
         <CircularProgress
@@ -55,7 +54,7 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
           bottom="1.5"
           right="1.5"
         >
-          <CircularProgressLabel color="#fff">{rate}</CircularProgressLabel>
+          <CircularProgressLabel color="white">{rate}</CircularProgressLabel>
         </CircularProgress>
       </Box>
     </Flex>

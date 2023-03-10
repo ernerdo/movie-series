@@ -67,29 +67,17 @@ const Home = () => {
         </Header>
         <GridItem
           as="section"
-          area={'main'}
+          area="main"
           p="4"
           display="flex"
           flexDir="column"
           gap="60px"
         >
-          <CarouselMovies
-            title="Most Popular"
-            genres={genres}
-            movies={popularMovies}
-          />
+          <CarouselMovies title="Most Popular" movies={popularMovies} />
           {!state.loading && <MoviePoster movie={popularMovies[1]} />}
-          <CarouselMovies
-            title="This Month"
-            genres={genres}
-            movies={popularMovies}
-          />
+          <CarouselMovies title="This Month" movies={popularMovies} />
           {!state.loading && <MoviePoster movie={popularMovies[2]} />}
-          <CarouselMovies
-            title="Recommendations"
-            genres={genres}
-            movies={popularMovies}
-          />
+          <CarouselMovies title="Recommendations" movies={popularMovies} />
         </GridItem>
         <Footer />
       </DefaultLayout>
