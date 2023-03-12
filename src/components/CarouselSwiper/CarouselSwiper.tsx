@@ -94,7 +94,7 @@ export const CarouselSwiper: FC<Props> = ({
           popularMovies.map((movie, index) => {
             return (
               <SwiperSlide key={`popular-movie-viewer-${index}`}>
-                <CarouselImage path={`${movie?.src}`} />
+                <CarouselImage path={`${movie?.src}`} id={movie?.id} />
               </SwiperSlide>
             )
           })}
