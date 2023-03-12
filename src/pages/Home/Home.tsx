@@ -12,7 +12,7 @@ import { AllPopularMovie } from '../../models/movies/popular.model'
 import { Genres } from '../../models/categories/categories.model'
 
 import { getPopularMovies } from '../../client/MovieApiClient'
-import { getGenreMovieList } from '../../client/MovieGenreApi'
+import { getGenreMovieList } from '../../client/MovieGenreApiClient'
 
 const initialPopularMovie: AllPopularMovie = {
   page: 0,
