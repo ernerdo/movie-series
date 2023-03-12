@@ -8,7 +8,7 @@ import {
 import { Genres } from '../../models/categories/categories.model'
 
 import { getPopularMovies } from '../../client/MovieApiClient'
-import { getGenreMovieList } from '../../client/MovieGenreApi'
+import { getGenreMovieList } from '../../client/MovieGenreApiClient'
 
 import { API_IMAGE_URL } from '../../config'
 

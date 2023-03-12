@@ -2,11 +2,12 @@ import { Box, Flex } from '@chakra-ui/react'
 import { FC } from 'react'
 import { CarouselSwiper } from '../../components'
 import { Genres } from '../../models/categories/categories.model'
+import { PopularMovie } from '../../models/movies/popular.model'
 
 interface CarouselProps {
   title?: string
   genres?: Genres
-  movies: any
+  movies: PopularMovie[]
 }
 
 const CarouselMovies: FC<CarouselProps> = ({ title, movies }) => {
