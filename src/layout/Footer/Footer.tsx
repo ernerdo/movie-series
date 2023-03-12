@@ -10,7 +10,7 @@ const Footer = () => {
       alignItems="center"
     >
       <Flex flexDir="column" alignItems="center">
-        <Text color="#fff">
+        <Text color="white">
           Created by{' '}
           <Link href="https://github.com/darkusphantom" target="_blank">
             @darkusphantom
@@ -20,7 +20,7 @@ const Footer = () => {
             @ernerdo
           </Link>
         </Text>
-        <Text color="#fff">
+        <Text color="white">
           <Link href="https://www.themoviedb.org/" target="_blank">
             API TMDB
           </Link>

@@ -10,13 +10,19 @@ import { API_IMAGE_URL } from '../../config'
 import { Cast } from '../../models/casts.model'
 import { Movie } from '../../models/movies.model'
 import { CarouselImage } from '../CarouselImage'
+import { PopularMovie } from '../../models/movies/popular.model'
 
 interface Props {
   cast?: Cast[]
   similarMovies?: Movie[]
+  popularMovies?: PopularMovie[]
 }
 
-export const CarouselSwiper: FC<Props> = ({ cast, similarMovies }) => {
+export const CarouselSwiper: FC<Props> = ({
+  cast,
+  similarMovies,
+  popularMovies,
+}) => {
   return (
     <Box>
       <Swiper
@@ -81,6 +87,14 @@ export const CarouselSwiper: FC<Props> = ({ cast, similarMovies }) => {
                   path={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
                   id={movie?.id}
                 />
+              </SwiperSlide>
+            )
+          })}
+        {popularMovies &&
+          popularMovies.map((movie, index) => {
+            return (
+              <SwiperSlide key={`popular-movie-viewer-${index}`}>
+                <CarouselImage path={`${movie?.src}`} />
               </SwiperSlide>
             )
           })}

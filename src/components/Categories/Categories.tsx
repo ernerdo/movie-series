@@ -1,6 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { FC } from 'react'
-import { CategoriesProps } from './categories.model'
+import { Genres } from '../../models/categories/categories.model'
+
+interface CategoriesProps {
+  categoriesList?: Genres
+}
 
 const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
   const genres = categoriesList?.genres.map((category) => {
@@ -19,8 +23,8 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
         <Box
           display="inline-block"
           h="max-content"
-          color="#fff"
-          bg="#1169c9"
+          color="white"
+          bg="darkBlue"
           py="1"
           px="3"
           borderRadius="12px"

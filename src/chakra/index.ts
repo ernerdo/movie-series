@@ -16,6 +16,11 @@ const theme = extendTheme({
   colors: {
     black: '#111111',
     white: '#ffffff',
+    dimGray: '#3f3b3b',
+    darkBlue: '#002b5b',
+    navyBlue: '#2b4865',
+    steelBlue: '#256d85',
+    aquamarine: '#8fe3cf',
     mainColor: '#1A202C',
     secondaryColor: '#00295d',
     backgroundGrey: '#f7fafc',
