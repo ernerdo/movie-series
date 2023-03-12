@@ -74,11 +74,14 @@ const Home = () => {
           flexDir="column"
           gap="60px"
         >
-          <CarouselMovies title="Most Popular" movies={popularMovies} />
+          <CarouselMovies title="Most Popular" popularMovies={popularMovies} />
           {!state.loading && <MoviePoster movie={popularMovies[1]} />}
-          <CarouselMovies title="This Month" movies={popularMovies} />
+          <CarouselMovies title="This Month" popularMovies={popularMovies} />
           {!state.loading && <MoviePoster movie={popularMovies[2]} />}
-          <CarouselMovies title="Recommendations" movies={popularMovies} />
+          <CarouselMovies
+            title="Recommendations"
+            popularMovies={popularMovies}
+          />
         </GridItem>
         <Footer />
       </DefaultLayout>
