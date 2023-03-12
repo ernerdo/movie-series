@@ -25,6 +25,7 @@ import { Footer, Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts.model'
 import { Movie, Trailer } from '../../models/movies.model'
+import coverDefault from '../../assets/cover-default.png'
 
 const MovieDetail = () => {
   const navigate = useNavigate()
@@ -70,9 +71,6 @@ const MovieDetail = () => {
     })
     window.scrollTo({ behavior: 'smooth', top: 0 })
   }, [id])
-  const handleImageLoad = () => {
-    setIsLoading(false)
-  }
 
   return (
     <DefaultLayout>
@@ -103,12 +101,14 @@ const MovieDetail = () => {
                   maxH={`80vh`}
                   w={`100%`}
                   alt={movie.title}
-                  src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`}
-                  fallbackSrc="https://via.placeholder.com/500x281"
+                  src={
+                    movie.backdrop_path
+                      ? `${API_IMAGE_URL}/original/${movie.backdrop_path}`
+                      : coverDefault
+                  }
                   onLoad={() => {
-                    handleImageLoad()
+                    setIsLoading(false)
                   }}
-                  fallbackStrategy={`beforeLoadOrError`}
                 />
               </Skeleton>
             </Box>
@@ -120,7 +120,7 @@ const MovieDetail = () => {
                     fontSize={`clamp(2rem,3vw,3.5rem)`}
                     color={`black`}
                   >
-                    {movie.title}
+                    {movie.title ? movie.title : movie.original_title}
                   </Heading>
                 </Skeleton>
                 <Skeleton isLoaded={!isLoading}>
