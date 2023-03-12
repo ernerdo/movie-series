@@ -1,0 +1,24 @@
+# https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+#Line ending file format (Unix, DOS, Mac)
+end_of_line = lf
+#Indentation Size (in single-spaced characters)
+indent_size = 2
+#Indentation Style (space, tab)
+indent_style = space
+#Denotes whether file should end with a newline
+insert_final_newline = true
+#Forces hard line wrapping after the amount of characters specified. off to turn off this feature (use the editor settings).
+max_line_length = 80
+#Denotes whether whitespace is removed from the end of lines
+trim_trailing_whitespace = true
+
+[*.md]
+max_line_length = 0
+trim_trailing_whitespace = false
+
+[COMMIT_EDITMSG]
+max_line_length = 0
