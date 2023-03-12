@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GridItem, Box } from '@chakra-ui/react'
 
-import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
-import { Footer, Header } from '../../layout'
-
-import { Categories } from '../../components/Categories/Categories'
-
 import {
   AllPopularMovie,
   PopularMovie,
@@ -14,9 +9,15 @@ import { Genres } from '../../models/categories/categories.model'
 
 import { getPopularMovies } from '../../client/MovieApiClient'
 import { getGenreMovieList } from '../../client/MovieGenreApi'
+
 import { API_IMAGE_URL } from '../../config'
+
+import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
+import { Footer, Header } from '../../layout'
 import { CarouselMovies } from '../../layout/CarouselMovies'
+
 import { MoviePoster } from '../../components'
+import { Categories } from '../../components/Categories/Categories'
 
 const initialPopularMovie: PopularMovie[] = []
 

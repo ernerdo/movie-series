@@ -11,7 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import {
   getCast,
@@ -21,12 +21,14 @@ import {
 } from '../../client/MovieApiClient'
 import { CarouselSwiper, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
-import { Footer } from '../../layout'
+import { Footer, Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts.model'
 import { Movie, Trailer } from '../../models/movies.model'
+import coverDefault from '../../assets/cover-default.png'
 
 const MovieDetail = () => {
+  const navigate = useNavigate()
   const [movie, setMovie] = useState<Movie>()
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([])
   const [cast, setCast] = useState<Cast[]>([])
@@ -37,6 +39,9 @@ const MovieDetail = () => {
   useEffect(() => {
     getMovieDetails(Number(id)).then((response) => {
       if (!response) return
+      if (response?.response?.data?.status_code === 34) {
+        navigate('/')
+      }
       setMovie(response)
     })
     getSimilarMovies(Number(id)).then((response) => {
@@ -59,24 +64,20 @@ const MovieDetail = () => {
     })
     getMovieVideos(Number(id)).then((response) => {
       if (!response) return
-      const youTube = response?.results.filter(
-        (video: Trailer) =>
-          video.site === 'YouTube' &&
-          video.type === 'Trailer' &&
-          video.name === 'Official Trailer'
+      const youTube = response?.results.find(
+        (video: Trailer) => video.type === 'Trailer'
       )
-      setTrailer(youTube[0])
+      setTrailer(youTube)
     })
+    window.scrollTo({ behavior: 'smooth', top: 0 })
   }, [id])
-  const handleImageLoad = () => {
-    setIsLoading(false)
-  }
 
   return (
     <DefaultLayout>
+      <Header />
       <GridItem bg={'whiteAlpha.100'} area={'main'}>
         {movie && (
-          <Stack>
+          <Stack id={`#top`}>
             <Box
               position={`relative`}
               _before={{
@@ -100,59 +101,84 @@ const MovieDetail = () => {
                   maxH={`80vh`}
                   w={`100%`}
                   alt={movie.title}
-                  src={`${API_IMAGE_URL}/original/${movie.backdrop_path}`}
-                  fallbackSrc="https://via.placeholder.com/500x281"
+                  src={
+                    movie.backdrop_path
+                      ? `${API_IMAGE_URL}/original/${movie.backdrop_path}`
+                      : coverDefault
+                  }
                   onLoad={() => {
-                    handleImageLoad()
+                    setIsLoading(false)
                   }}
-                  fallbackStrategy={`beforeLoadOrError`}
                 />
               </Skeleton>
             </Box>
             <Stack px={`10%`}>
               <Flex justifyContent={`space-between`} mb={5}>
-                <Heading
-                  size={`3xl`}
-                  fontSize={`clamp(2rem,3vw,3.5rem)`}
-                  color={`black`}
-                >
-                  {movie.title}
-                </Heading>
-                <Heading size={`3xl`} color={`black`}>
-                  {movie.vote_average}
-                </Heading>
+                <Skeleton isLoaded={!isLoading}>
+                  <Heading
+                    size={`3xl`}
+                    fontSize={`clamp(2rem,3vw,3.5rem)`}
+                    color={`black`}
+                  >
+                    {movie.title ? movie.title : movie.original_title}
+                  </Heading>
+                </Skeleton>
+                <Skeleton isLoaded={!isLoading}>
+                  <Heading size={`3xl`} color={`black`}>
+                    {movie.vote_average}
+                  </Heading>
+                </Skeleton>
               </Flex>
-              <Text fontSize={`xl`} color={`black`}>
-                {movie.overview}
-              </Text>
-              <HStack gap={5} mb={5}>
-                {movie.genres &&
-                  movie.genres.map((genre) => (
-                    <Box key={genre.id}>
-                      <Button
-                        colorScheme="blue"
-                        size="md"
-                        onClick={() => console.log(genre.name)}
-                        _hover={{
-                          bg: 'blue.500',
-                          color: 'white',
-                          transform: 'scale(1.05)',
-                          translateY: '-2px',
-                        }}
-                      >
-                        {genre.name}
-                      </Button>
-                    </Box>
-                  ))}
-              </HStack>
-              <Heading color={`black`}>Cast</Heading>
-              <CarouselSwiper cast={cast} />
-
-              <Heading color={`black`}>Trailer</Heading>
-              {trailer && <Iframe trailer={trailer} />}
-
-              <Heading color={`black`}>Related movies</Heading>
-              <CarouselSwiper similarMovies={similarMovies} />
+              <Skeleton isLoaded={!isLoading}>
+                <Text fontSize={`xl`} color={`black`}>
+                  {movie.release_date}
+                </Text>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <Text fontSize={`xl`} color={`black`}>
+                  {movie.overview}
+                </Text>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <HStack gap={5} mb={5} wrap={`wrap`}>
+                  {movie.genres &&
+                    movie.genres.map((genre) => (
+                      <Box key={genre.id}>
+                        <Button
+                          colorScheme="blue"
+                          size="md"
+                          onClick={() => console.log(genre.name)}
+                          _hover={{
+                            bg: 'blue.500',
+                            color: 'white',
+                            transform: 'scale(1.05)',
+                            translateY: '-2px',
+                          }}
+                        >
+                          {genre.name}
+                        </Button>
+                      </Box>
+                    ))}
+                </HStack>
+              </Skeleton>
+              {cast && (
+                <>
+                  <Heading color={`black`}>Cast</Heading>
+                  <CarouselSwiper cast={cast} />
+                </>
+              )}
+              {trailer && (
+                <>
+                  <Heading color={`black`}>Trailer</Heading>
+                  <Iframe trailer={trailer} />
+                </>
+              )}
+              {similarMovies && (
+                <>
+                  <Heading color={`black`}>Related movies</Heading>
+                  <CarouselSwiper similarMovies={similarMovies} />
+                </>
+              )}
             </Stack>
           </Stack>
         )}
