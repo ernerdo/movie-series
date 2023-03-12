@@ -7,8 +7,8 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 import { API_IMAGE_URL } from '../../config'
-import { Cast } from '../../models/casts.model'
-import { Movie } from '../../models/movies.model'
+import { Cast } from '../../models/casts/casts.model'
+import { Movie } from '../../models/movies/movies.model'
 import { CarouselImage } from '../CarouselImage'
 import { PopularMovie } from '../../models/movies/popular.model'
 
@@ -18,11 +18,7 @@ interface Props {
   popularMovies?: PopularMovie[]
 }
 
-export const CarouselSwiper: FC<Props> = ({
-  cast,
-  similarMovies,
-  popularMovies,
-}) => {
+export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
   return (
     <Box>
       <Swiper
@@ -94,7 +90,7 @@ export const CarouselSwiper: FC<Props> = ({
           popularMovies.map((movie, index) => {
             return (
               <SwiperSlide key={`popular-movie-viewer-${index}`}>
-                <CarouselImage path={`${movie?.src}`} />
+                <CarouselImage path={`${movie?.src}`} id={movie?.id} />
               </SwiperSlide>
             )
           })}

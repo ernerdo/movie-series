@@ -19,12 +19,12 @@ import {
   getMovieVideos,
   getSimilarMovies,
 } from '../../client/MovieApiClient'
-import { CarouselSwiper, Iframe } from '../../components'
+import { Carousel, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import { Footer, Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
-import { Cast } from '../../models/casts.model'
-import { Movie, Trailer } from '../../models/movies.model'
+import { Cast } from '../../models/casts/casts.model'
+import { Movie, Trailer } from '../../models/movies/movies.model'
 import coverDefault from '../../assets/cover-default.png'
 
 const MovieDetail = () => {
@@ -164,7 +164,7 @@ const MovieDetail = () => {
               {cast && (
                 <>
                   <Heading color={`black`}>Cast</Heading>
-                  <CarouselSwiper cast={cast} />
+                  <Carousel cast={cast} />
                 </>
               )}
               {trailer && (
@@ -176,7 +176,7 @@ const MovieDetail = () => {
               {similarMovies && (
                 <>
                   <Heading color={`black`}>Related movies</Heading>
-                  <CarouselSwiper similarMovies={similarMovies} />
+                  <Carousel similarMovies={similarMovies} />
                 </>
               )}
             </Stack>
