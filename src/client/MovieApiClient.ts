@@ -22,7 +22,7 @@ export const getMovieDetails = async (id: number) => {
     const response = await baseApiClient.get(`/movie/${id}`)
     return response.data
   } catch (error) {
-    console.error(error)
+    return error
   }
 }
 

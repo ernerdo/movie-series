@@ -79,6 +79,7 @@ export const CarouselSwiper: FC<Props> = ({ cast, similarMovies }) => {
               <SwiperSlide key={`similar-movie-viewer-${index}`}>
                 <CarouselImage
                   path={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
+                  id={movie?.id}
                 />
               </SwiperSlide>
             )

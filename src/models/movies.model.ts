@@ -10,6 +10,8 @@ export interface Movie {
   poster_path: string
   genres: Genres[]
   vote_average: number
+  release_date: string
+  original_title: string
 }
 
 export interface Trailer {
