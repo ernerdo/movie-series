@@ -45,10 +45,8 @@ export const ActorDetail = () => {
                 objectFit={`cover`}
                 alt={actor.name}
                 borderRadius="5px"
-                boxSize={{
-                  sm: '450px',
-                }}
-                maxW={`30rem`}
+                h={`450px`}
+                maxW={`300px`}
                 m={0}
                 src={`${API_IMAGE_URL}/original/${actor.profile_path}`}
               />
