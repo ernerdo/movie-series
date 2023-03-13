@@ -21,8 +21,8 @@ export const CarouselImage: FC<Props> = ({ path, movieId, actorId }) => {
           onLoad={() => setIsLoading(false)}
           loading="lazy"
           objectFit={`cover`}
-          h={`300px`}
-          w={`200px`}
+          h={{ base: `200px`, md: `300px` }}
+          w={{ base: `150px`, md: `200px` }}
           borderRadius={`10px`}
         />
       </Link>

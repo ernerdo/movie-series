@@ -26,7 +26,7 @@ export const Carousel: FC<Props> = ({ cast, movies }) => {
         }}
         breakpoints={{
           0: {
-            slidesPerView: 1,
+            slidesPerView: 2,
           },
           500: {
             slidesPerView: 2,
