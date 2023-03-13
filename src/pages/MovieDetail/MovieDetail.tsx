@@ -175,7 +175,7 @@ const MovieDetail = () => {
               {similarMovies && (
                 <>
                   <Heading color={`black`}>Related movies</Heading>
-                  <Carousel similarMovies={similarMovies} />
+                  <Carousel movies={similarMovies} />
                 </>
               )}
             </Stack>

@@ -14,11 +14,11 @@ import { PopularMovie } from '../../models/movies/popular.model'
 
 interface Props {
   cast?: Cast[]
-  similarMovies?: Movie[]
+  movies?: Movie[]
   popularMovies?: PopularMovie[]
 }
 
-export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
+export const Carousel: FC<Props> = ({ cast, movies }) => {
   return (
     <Box>
       <Swiper
@@ -58,8 +58,6 @@ export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
           delay: 2500,
           disableOnInteraction: true,
         }}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         navigation={true}
         modules={[Autoplay, Navigation]}
         className="mySwiper"
@@ -76,22 +74,14 @@ export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
               </SwiperSlide>
             )
           })}
-        {similarMovies &&
-          similarMovies.map((movie, index) => {
+        {movies &&
+          movies.map((movie, index) => {
             return (
               <SwiperSlide key={`similar-movie-viewer-${index}`}>
                 <CarouselImage
                   path={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
                   movieId={movie?.id}
                 />
-              </SwiperSlide>
-            )
-          })}
-        {popularMovies &&
-          popularMovies.map((movie, index) => {
-            return (
-              <SwiperSlide key={`popular-movie-viewer-${index}`}>
-                <CarouselImage path={`${movie?.src}`} movieId={movie?.id} />
               </SwiperSlide>
             )
           })}

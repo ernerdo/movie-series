@@ -67,7 +67,7 @@ export const ActorDetail = () => {
             {movies && (
               <Stack>
                 <Heading color={`black`}>{`${actor.name}'s movies`}</Heading>
-                <Carousel similarMovies={movies} />
+                <Carousel movies={movies} />
               </Stack>
             )}
           </Stack>
