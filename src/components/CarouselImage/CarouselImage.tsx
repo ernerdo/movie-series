@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom'
 
 interface Props {
   path: string
-  id?: number
+  movieId?: number
+  actorId?: number
 }
-export const CarouselImage: FC<Props> = ({ path, id }) => {
+export const CarouselImage: FC<Props> = ({ path, movieId, actorId }) => {
   const [isLoading, setIsLoading] = useState(true)
   const handleImageLoad = () => {
     setIsLoading(false)
@@ -14,7 +15,10 @@ export const CarouselImage: FC<Props> = ({ path, id }) => {
 
   return (
     <Skeleton isLoaded={!isLoading}>
-      <Link to={id ? `/detail/${id}` : `/`} preventScrollReset={false}>
+      <Link
+        to={movieId ? `/detail/${movieId}` : `/actor/${actorId}`}
+        preventScrollReset={false}
+      >
         <Image
           src={path}
           onLoad={() => handleImageLoad()}

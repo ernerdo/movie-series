@@ -70,6 +70,7 @@ export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
               <SwiperSlide key={`cast-viewer-${index}`}>
                 <CarouselImage
                   path={`${API_IMAGE_URL}/w200${cast.profile_path}`}
+                  actorId={cast.id}
                 />
                 <Text>{cast.name}</Text>
               </SwiperSlide>
@@ -81,7 +82,7 @@ export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
               <SwiperSlide key={`similar-movie-viewer-${index}`}>
                 <CarouselImage
                   path={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
-                  id={movie?.id}
+                  movieId={movie?.id}
                 />
               </SwiperSlide>
             )
@@ -90,7 +91,7 @@ export const Carousel: FC<Props> = ({ cast, similarMovies, popularMovies }) => {
           popularMovies.map((movie, index) => {
             return (
               <SwiperSlide key={`popular-movie-viewer-${index}`}>
-                <CarouselImage path={`${movie?.src}`} id={movie?.id} />
+                <CarouselImage path={`${movie?.src}`} movieId={movie?.id} />
               </SwiperSlide>
             )
           })}
