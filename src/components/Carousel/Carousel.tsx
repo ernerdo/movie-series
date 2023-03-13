@@ -10,6 +10,7 @@ import { API_IMAGE_URL } from '../../config'
 import { Cast } from '../../models/casts/casts.model'
 import { Movie } from '../../models/movies/movies.model'
 import { CarouselImage } from '../CarouselImage'
+import imageDefault from '../../assets/image-default.png'
 
 interface Props {
   cast?: Cast[]
@@ -77,7 +78,11 @@ export const Carousel: FC<Props> = ({ cast, movies }) => {
             return (
               <SwiperSlide key={`similar-movie-viewer-${index}`}>
                 <CarouselImage
-                  path={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
+                  path={
+                    movie.poster_path
+                      ? `${API_IMAGE_URL}/w200/${movie?.poster_path}`
+                      : imageDefault
+                  }
                   movieId={movie?.id}
                 />
               </SwiperSlide>

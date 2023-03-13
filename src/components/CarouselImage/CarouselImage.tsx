@@ -9,9 +9,6 @@ interface Props {
 }
 export const CarouselImage: FC<Props> = ({ path, movieId, actorId }) => {
   const [isLoading, setIsLoading] = useState(true)
-  const handleImageLoad = () => {
-    setIsLoading(false)
-  }
 
   return (
     <Skeleton isLoaded={!isLoading}>
@@ -21,7 +18,7 @@ export const CarouselImage: FC<Props> = ({ path, movieId, actorId }) => {
       >
         <Image
           src={path}
-          onLoad={() => handleImageLoad()}
+          onLoad={() => setIsLoading(false)}
           loading="lazy"
           objectFit={`cover`}
           h={`300px`}
