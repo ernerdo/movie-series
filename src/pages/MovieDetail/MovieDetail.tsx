@@ -38,8 +38,7 @@ const MovieDetail = () => {
 
   useEffect(() => {
     getMovieDetails(Number(id)).then((response) => {
-      if (!response) return
-      if (response?.response?.data?.status_code === 34) {
+      if (response?.response?.data?.status_code === 34 || !response) {
         navigate('/')
       }
       setMovie(response)
@@ -176,7 +175,7 @@ const MovieDetail = () => {
               {similarMovies && (
                 <>
                   <Heading color={`black`}>Related movies</Heading>
-                  <Carousel similarMovies={similarMovies} />
+                  <Carousel movies={similarMovies} />
                 </>
               )}
             </Stack>
