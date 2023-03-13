@@ -10,12 +10,10 @@ import { API_IMAGE_URL } from '../../config'
 import { Cast } from '../../models/casts/casts.model'
 import { Movie } from '../../models/movies/movies.model'
 import { CarouselImage } from '../CarouselImage'
-import { PopularMovie } from '../../models/movies/popular.model'
 
 interface Props {
   cast?: Cast[]
   movies?: Movie[]
-  popularMovies?: PopularMovie[]
 }
 
 export const Carousel: FC<Props> = ({ cast, movies }) => {

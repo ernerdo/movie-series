@@ -7,10 +7,10 @@ import {
   CircularProgressLabel,
 } from '@chakra-ui/react'
 import { FC } from 'react'
-import { PopularMovie } from '../../models/movies/popular.model'
+import { Movie } from '../../models/movies/movies.model'
 
 interface MoviePosterComponent {
-  movie: PopularMovie
+  movie: Movie
 }
 
 const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
