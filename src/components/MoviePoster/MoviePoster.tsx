@@ -16,7 +16,6 @@ interface MoviePosterComponent {
 const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
   const rate = !movie?.vote_average ? 0 : movie?.vote_average
   const movieRate = rate * 10
-  const colorRate = movieRate > 7 ? 'green.300' : 'orange.400'
 
   return (
     <Flex as="section" direction="column" gap="5">
@@ -49,7 +48,7 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
         <CircularProgress
           as="span"
           value={movieRate}
-          color={colorRate}
+          color={movieRate > 7 ? 'green.300' : 'orange.400'}
           position="absolute"
           bottom="1.5"
           right="1.5"

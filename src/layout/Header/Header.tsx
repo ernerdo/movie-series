@@ -1,7 +1,5 @@
-import { Flex, GridItem } from '@chakra-ui/react'
+import { Flex, GridItem, Input, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import { Searchbar } from '../../components/Searchbar'
-import { TitlePage } from '../../components/TitlePage'
 
 type Props = {
   children?: ReactNode
@@ -22,8 +20,15 @@ const Header = ({ children }: Props) => {
       overflow="hidden"
     >
       <Flex justifyContent="space-around" alignItems="center" mb="16px">
-        <TitlePage />
-        <Searchbar placeholder="Search a movie, serie, stream..." />
+        <Text as="h2" color="white">
+          Project Movie
+        </Text>
+        <Input
+          w="70%"
+          h="30px"
+          color="white"
+          placeholder="Search a movie, serie, stream..."
+        />
       </Flex>
       {children}
     </GridItem>
