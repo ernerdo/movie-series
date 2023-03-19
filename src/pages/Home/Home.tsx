@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { GridItem, Box } from '@chakra-ui/react'
+import { GridItem, Box, Flex, Text } from '@chakra-ui/react'
 
 import { Movie, AllPopularMovie } from '../../models/movies/movies.model'
 import { Genres } from '../../models/categories/categories.model'
@@ -57,25 +57,54 @@ const Home = () => {
     })
 
   return (
-    <Box as="main" bg="#0E1219">
+    <Box as="main" minHeight="100vh" bg="#0E1219">
       <DefaultLayout>
         <Header>
           <Categories categoriesList={genres} />
         </Header>
-        <GridItem
+        <Flex h="300px" position="relative">
+          <Flex
+            flexDir="column"
+            gap="20px"
+            color="white"
+            w="100%"
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            zIndex="1"
+            textAlign="center"
+          >
+            <Text as="h1" fontSize="2.7rem">
+              Welcome to Catalogue Movie
+            </Text>
+            <Text as="p" fontSize="1.4rem">
+              A variety of movies for your entertainment enjoys
+            </Text>
+          </Flex>
+          <Box
+            w="100%"
+            h="100%"
+            bg='url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80") no-repeat center center'
+            bgSize="cover"
+            filter="blur(2px)"
+          />
+        </Flex>
+        <Flex
           as="section"
-          area="main"
-          p="4"
-          display="flex"
           flexDir="column"
-          gap="60px"
+          gap="80px"
+          p="4"
+          w="90%"
+          maxWidth="1200px"
+          margin="auto"
         >
           <CarouselMovies title="Most Popular" movies={popularMovies} />
           {!state.loading && <MoviePoster movie={popularMovies[1]} />}
           <CarouselMovies title="This Month" movies={popularMovies} />
           {!state.loading && <MoviePoster movie={popularMovies[2]} />}
           <CarouselMovies title="Recommendations" movies={popularMovies} />
-        </GridItem>
+        </Flex>
         <Footer />
       </DefaultLayout>
     </Box>

@@ -15,7 +15,6 @@ const Header = ({ children }: Props) => {
       gap="3"
       px="2"
       pt="4"
-      pb="2"
       w="100%"
       overflow="hidden"
     >

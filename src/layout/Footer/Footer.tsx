@@ -6,26 +6,33 @@ const Footer = () => {
       p="2"
       area={'footer'}
       display="flex"
+      flexDir="column"
       justifyContent="center"
       alignItems="center"
     >
-      <Flex flexDir="column" alignItems="center">
-        <Text color="white">
-          Created by{' '}
-          <Link href="https://github.com/darkusphantom" target="_blank">
-            @darkusphantom
-          </Link>{' '}
-          &{' '}
-          <Link href="https://github.com/ernerdo" target="_blank">
-            @ernerdo
-          </Link>
-        </Text>
-        <Text color="white">
-          <Link href="https://www.themoviedb.org/" target="_blank">
-            API TMDB
-          </Link>
+      <Flex alignSelf="baseline">
+        <Text fontSize="24px" color="white">
+          Project Movie
         </Text>
       </Flex>
+      <Flex flexDir="column" color="white">
+        <Text>Created by:</Text>
+        <Link
+          href="https://github.com/darkusphantom"
+          target="_blank"
+          fontSize="12px"
+        >
+          @darkusphantom
+        </Link>
+        <Link href="https://github.com/ernerdo" target="_blank" fontSize="12px">
+          @ernerdo
+        </Link>
+      </Flex>
+      <Text color="white">
+        <Link href="https://www.themoviedb.org/" target="_blank">
+          API TMDB
+        </Link>
+      </Text>
     </GridItem>
   )
 }
