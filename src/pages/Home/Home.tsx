@@ -17,7 +17,6 @@ import { MoviePoster } from '../../components'
 import { Categories } from '../../components/Categories/Categories'
 
 const initialPopularMovie: Movie[] = []
-
 const initialGenres: Genres = {
   genres: [{ id: 0, name: '' }],
 }
@@ -46,7 +45,7 @@ const Home = () => {
           setCategoriesList(genre)
         })
         onConfirm()
-      }, 2000)
+      }, 1000)
     }
   }, [state.loading])
 
