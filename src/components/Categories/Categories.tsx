@@ -26,7 +26,7 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
       css={{
         '&::-webkit-scrollbar': {
           width: '4px',
-          height: '4px',
+          height: '2px',
         },
         '&::-webkit-scrollbar-track': {
           width: '6px',
@@ -48,6 +48,7 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
           borderRadius="12px"
           fontSize=".9rem"
           key={i}
+          onClick={() => console.log(category.id)}
         >
           {category?.name}
         </Box>

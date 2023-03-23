@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { GridItem, Box, Flex, Text } from '@chakra-ui/react'
+import { GridItem, Box, Flex, Text, Skeleton } from '@chakra-ui/react'
 
 import { Movie, AllPopularMovie } from '../../models/movies/movies.model'
 import { Genres } from '../../models/categories/categories.model'
@@ -100,9 +100,9 @@ const Home = () => {
           margin="auto"
         >
           <CarouselMovies title="Most Popular" movies={popularMovies} />
-          {!state.loading && <MoviePoster movie={popularMovies[1]} />}
+          <MoviePoster movie={popularMovies[1]} />
           <CarouselMovies title="This Month" movies={popularMovies} />
-          {!state.loading && <MoviePoster movie={popularMovies[2]} />}
+          <MoviePoster movie={popularMovies[2]} />
           <CarouselMovies title="Recommendations" movies={popularMovies} />
         </Flex>
         <Footer />

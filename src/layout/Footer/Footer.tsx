@@ -3,14 +3,16 @@ const Footer = () => {
   return (
     <GridItem
       as="footer"
-      p="2"
+      px="5"
+      py="7"
       area={'footer'}
       display="flex"
-      flexDir="column"
       justifyContent="center"
       alignItems="center"
+      flexWrap="wrap"
+      gap="32px"
     >
-      <Flex alignSelf="baseline">
+      <Flex alignSelf="baseline" w="90%" m="0 auto">
         <Text fontSize="24px" color="white">
           Project Movie
         </Text>
