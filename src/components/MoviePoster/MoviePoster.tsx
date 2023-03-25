@@ -41,7 +41,7 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
           spacing="4"
           skeletonHeight="2"
         >
-          <Box as="p" color="white" fontSize="1rem">
+          <Box as="p" color="white" fontSize={{ base: '.9rem', sm: '1rem' }}>
             {movie?.overview}
           </Box>
         </SkeletonText>

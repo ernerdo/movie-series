@@ -19,7 +19,11 @@ const Header = ({ children }: Props) => {
       overflow="hidden"
     >
       <Flex justifyContent="space-around" alignItems="center" mb="16px">
-        <Text as="h2" color="white">
+        <Text
+          as="h2"
+          color="white"
+          fontSize={{ base: '1.2rem', md: '1.7rem' }}
+        >
           Project Movie
         </Text>
         <Input
