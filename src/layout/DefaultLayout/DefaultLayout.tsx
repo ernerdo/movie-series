@@ -1,35 +1,26 @@
 import React from 'react'
-import { Flex, Grid } from '@chakra-ui/react'
+import { Grid } from '@chakra-ui/react'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 
 type Props = {
   children?: React.ReactNode
 }
 const DefaultLayout = ({ children }: Props) => {
-  // return (
-  //   <Flex
-  //     flexDirection="column"
-  //     gap="1"
-  //     bg="transparent"
-  //     color="blackAlpha.700"
-  //     fontWeight="bold"
-  //   >
-  //     {children}
-  //   </Flex>
-  // )
-
   return (
     <Grid
       templateAreas={`"header"
                     "main"
                     "footer"`}
-      gridTemplateRows={'120px 1fr 50px'}
+      gridTemplateRows={'120px 1fr 100px'}
       gridTemplateColumns={'100%'}
       gap="1"
-      bg="transparent"
-      color="blackAlpha.700"
+      bg="#0E1219"
       fontWeight="bold"
     >
+      <Header />
       {children}
+      <Footer />
     </Grid>
   )
 }

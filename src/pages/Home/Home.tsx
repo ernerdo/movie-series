@@ -1,17 +1,16 @@
+import { Box, Flex, GridItem, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { GridItem, Box, Flex, Text, Skeleton } from '@chakra-ui/react'
 
-import { Movie, AllPopularMovie } from '../../models/movies/movies.model'
 import { Genres } from '../../models/categories/categories.model'
+import { AllPopularMovie, Movie } from '../../models/movies/movies.model'
 
 import { getPopularMovies } from '../../client/MovieApiClient'
 import { getGenreMovieList } from '../../client/MovieGenreApiClient'
 
 import { API_IMAGE_URL } from '../../config'
 
-import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
-import { Footer, Header } from '../../layout'
 import { CarouselMovies } from '../../layout/CarouselMovies'
+import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 
 import { MoviePoster } from '../../components'
 import { Categories } from '../../components/Categories/Categories'
@@ -57,11 +56,9 @@ const Home = () => {
     })
 
   return (
-    <Box as="main" minHeight="100vh" bg="#0E1219">
-      <DefaultLayout>
-        <Header>
-          <Categories categoriesList={genres} />
-        </Header>
+    <DefaultLayout>
+      <GridItem as="main">
+        <Categories categoriesList={genres} />
         <Flex h="300px" position="relative">
           <Flex
             flexDir="column"
@@ -105,9 +102,8 @@ const Home = () => {
           <MoviePoster movie={popularMovies[2]} />
           <CarouselMovies title="Recommendations" movies={popularMovies} />
         </Flex>
-        <Footer />
-      </DefaultLayout>
-    </Box>
+      </GridItem>
+    </DefaultLayout>
   )
 }
 export default Home
