@@ -93,7 +93,7 @@ const Home = () => {
           gap="80px"
           p="4"
           w="90%"
-          maxWidth="1200px"
+          maxWidth="2048px"
           margin="auto"
         >
           <CarouselMovies title="Most Popular" movies={popularMovies} />

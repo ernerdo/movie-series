@@ -9,6 +9,7 @@ import {
   SkeletonText,
 } from '@chakra-ui/react'
 import { FC, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Movie } from '../../models/movies/movies.model'
 
 interface MoviePosterComponent {
@@ -41,21 +42,22 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
           spacing="4"
           skeletonHeight="2"
         >
-          <Box as="p" color="white" fontSize={{ base: '.9rem', sm: '1rem' }}>
+          <Box as="p" color="white" fontSize={{ base: '.9rem', sm: '1.2rem' }}>
             {movie?.overview}
           </Box>
         </SkeletonText>
         <Skeleton isLoaded={!isLoading}>
-          <Button
-            bg="navyBlue"
-            color="white"
-            size="md"
-            alignSelf="center"
-            order="2"
-            onClick={() => console.log(movie?.id)}
-          >
-            See more
-          </Button>
+          <Link to={`/detail/${movie?.id}`}>
+            <Button
+              bg="navyBlue"
+              color="white"
+              size="md"
+              alignSelf="center"
+              order="2"
+            >
+              See more
+            </Button>
+          </Link>
         </Skeleton>
       </Flex>
 

@@ -9,32 +9,45 @@ const Footer = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      flexWrap="wrap"
-      gap="32px"
+      flexWrap={{ base: 'wrap', sm: 'initial' }}
+      gap={{ sm: '32px' }}
+      maxW="1200px"
+      mx="auto"
     >
-      <Flex alignSelf="baseline" w="90%" m="0 auto">
-        <Text fontSize="24px" color="white">
+      <Flex>
+        <Text fontSize="24px" color="white" textAlign="center">
           Project Movie
         </Text>
       </Flex>
-      <Flex flexDir="column" color="white">
-        <Text>Created by:</Text>
-        <Link
-          href="https://github.com/darkusphantom"
-          target="_blank"
-          fontSize="12px"
-        >
-          @darkusphantom
-        </Link>
-        <Link href="https://github.com/ernerdo" target="_blank" fontSize="12px">
-          @ernerdo
-        </Link>
+      <Flex
+        flexDir="column"
+        w={{ base: '90%', sm: 'initial' }}
+        color="white"
+        textAlign="center"
+      >
+        <Text>
+          Created by with{' '}
+          <Link href="https://www.themoviedb.org/" target="_blank">
+            API TMDB
+          </Link>{' '}
+          by{' '}
+          <Link
+            href="https://github.com/darkusphantom"
+            target="_blank"
+            fontSize="12px"
+          >
+            @darkusphantom
+          </Link>
+          {' & '}
+          <Link
+            href="https://github.com/ernerdo"
+            target="_blank"
+            fontSize="12px"
+          >
+            @ernerdo
+          </Link>
+        </Text>
       </Flex>
-      <Text color="white">
-        <Link href="https://www.themoviedb.org/" target="_blank">
-          API TMDB
-        </Link>
-      </Text>
     </GridItem>
   )
 }

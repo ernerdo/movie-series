@@ -12,7 +12,7 @@ const DefaultLayout = ({ children }: Props) => {
       templateAreas={`"header"
                     "main"
                     "footer"`}
-      gridTemplateRows={'120px 1fr 100px'}
+      gridTemplateRows={'120px 1fr 200px'}
       gridTemplateColumns={'100%'}
       gap="1"
       bg="#0E1219"
