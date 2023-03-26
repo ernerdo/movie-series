@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react'
 import { Genres } from '../../models/categories/categories.model'
 import { AllPopularMovie, Movie } from '../../models/movies/movies.model'
 
-import { getPopularMovies } from '../../client/MovieApiClient'
+import {
+  getPopularMovies,
+  getUpcomingMovies,
+  getTopRatedMovies,
+} from '../../client/MovieApiClient'
 import { getGenreMovieList } from '../../client/MovieGenreApiClient'
 
 import { API_IMAGE_URL } from '../../config'
@@ -29,6 +33,10 @@ const Home = () => {
   const [popularMovies, setPopularMovies] =
     useState<Movie[]>(initialPopularMovie)
   const [genres, setCategoriesList] = useState<Genres>(initialGenres)
+  const [topRatedMovies, setTopRatedMovies] =
+    useState<Movie[]>(initialPopularMovie)
+  const [upcomingMovies, setUpcomingMovies] =
+    useState<Movie[]>(initialPopularMovie)
 
   useEffect(() => {
     if (state.loading) {
@@ -43,6 +51,22 @@ const Home = () => {
         getGenreMovieList().then((genre) => {
           setCategoriesList(genre)
         })
+
+        getTopRatedMovies().then((movies: AllPopularMovie) => {
+          const movieFormatted = movies.results.map((movie) => ({
+            ...movie,
+            src: `${API_IMAGE_URL}/original/${movie.poster_path}`,
+          }))
+          setTopRatedMovies(movieFormatted)
+        })
+        getUpcomingMovies().then((movies: AllPopularMovie) => {
+          const movieFormatted = movies.results.map((movie) => ({
+            ...movie,
+            src: `${API_IMAGE_URL}/original/${movie.poster_path}`,
+          }))
+          setUpcomingMovies(movieFormatted)
+        })
+
         onConfirm()
       }, 1000)
     }
@@ -96,9 +120,9 @@ const Home = () => {
         >
           <CarouselMovies title="Most Popular" movies={popularMovies} />
           <MoviePoster movie={popularMovies[1]} />
-          <CarouselMovies title="This Month" movies={popularMovies} />
-          <MoviePoster movie={popularMovies[2]} />
-          <CarouselMovies title="Recommendations" movies={popularMovies} />
+          <CarouselMovies title="Top Rated" movies={topRatedMovies} />
+          <MoviePoster movie={topRatedMovies[1]} />
+          <CarouselMovies title="Coming soon" movies={upcomingMovies} />
         </Flex>
       </GridItem>
     </DefaultLayout>

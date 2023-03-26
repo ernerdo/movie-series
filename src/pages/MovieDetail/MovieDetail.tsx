@@ -84,7 +84,7 @@ const MovieDetail = () => {
                 left: 0,
                 width: '100%',
                 height: '10%',
-                background: 'linear-gradient(to top,#fafafa,transparent)',
+                background: 'linear-gradient(to top,#0a0a12,transparent)',
               }}
             >
               <Skeleton isLoaded={!isLoading}>
