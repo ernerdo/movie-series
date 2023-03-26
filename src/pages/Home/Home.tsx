@@ -70,6 +70,7 @@ const Home = () => {
         onConfirm()
       }, 1000)
     }
+    window.scrollTo({ behavior: 'smooth', top: 0 })
   }, [state.loading])
 
   const onConfirm = () =>
