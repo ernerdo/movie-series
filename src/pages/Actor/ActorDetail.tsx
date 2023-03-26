@@ -29,7 +29,7 @@ export const ActorDetail = () => {
   return (
     <DefaultLayout>
       <Header />
-      <GridItem bg={'whiteAlpha.100'} area={'main'}>
+      <GridItem area={'main'}>
         {actor && (
           <Stack px={`10%`} gap={5}>
             <Stack
@@ -51,15 +51,15 @@ export const ActorDetail = () => {
                 src={`${API_IMAGE_URL}/original/${actor.profile_path}`}
               />
               <VStack alignItems={`flex-start`} gap={1}>
-                <Heading>
+                <Heading color={`white`}>
                   {actor.name} ({actor.birthday}{' '}
                   {actor.deathday ? ' to ' + actor.deathday : ''})
                 </Heading>
-                <Text>Biography</Text>
-                <Text>
+                <Text color={`white`}>Biography</Text>
+                <Text color={`white`}>
                   {actor.biography} {actor.place_of_birth}
                 </Text>
-                <Text>⭐{actor.popularity}</Text>
+                <Text color={`white`}>⭐{actor.popularity}</Text>
               </VStack>
             </Stack>
             {movies && (
