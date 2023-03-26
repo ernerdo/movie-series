@@ -7,22 +7,17 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 import { API_IMAGE_URL } from '../../config'
-import { Cast } from '../../models/casts.model'
-import { Movie } from '../../models/movies.model'
+import { Cast } from '../../models/casts/casts.model'
+import { Movie } from '../../models/movies/movies.model'
 import { CarouselImage } from '../CarouselImage'
-import { PopularMovie } from '../../models/movies/popular.model'
+import imageDefault from '../../assets/image-default.png'
 
 interface Props {
   cast?: Cast[]
-  similarMovies?: Movie[]
-  popularMovies?: PopularMovie[]
+  movies?: Movie[]
 }
 
-export const CarouselSwiper: FC<Props> = ({
-  cast,
-  similarMovies,
-  popularMovies,
-}) => {
+export const Carousel: FC<Props> = ({ cast, movies }) => {
   return (
     <Box>
       <Swiper
@@ -31,7 +26,7 @@ export const CarouselSwiper: FC<Props> = ({
         }}
         breakpoints={{
           0: {
-            slidesPerView: 1,
+            slidesPerView: 2,
           },
           500: {
             slidesPerView: 2,
@@ -62,8 +57,6 @@ export const CarouselSwiper: FC<Props> = ({
           delay: 2500,
           disableOnInteraction: true,
         }}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         navigation={true}
         modules={[Autoplay, Navigation]}
         className="mySwiper"
@@ -74,27 +67,24 @@ export const CarouselSwiper: FC<Props> = ({
               <SwiperSlide key={`cast-viewer-${index}`}>
                 <CarouselImage
                   path={`${API_IMAGE_URL}/w200${cast.profile_path}`}
+                  actorId={cast.id}
                 />
-                <Text>{cast.name}</Text>
+                <Text color={`white`}>{cast.name}</Text>
               </SwiperSlide>
             )
           })}
-        {similarMovies &&
-          similarMovies.map((movie, index) => {
+        {movies &&
+          movies.map((movie, index) => {
             return (
               <SwiperSlide key={`similar-movie-viewer-${index}`}>
                 <CarouselImage
-                  path={`${API_IMAGE_URL}/w200/${movie?.poster_path}`}
-                  id={movie?.id}
+                  path={
+                    movie.poster_path
+                      ? `${API_IMAGE_URL}/w200/${movie?.poster_path}`
+                      : imageDefault
+                  }
+                  movieId={movie?.id}
                 />
-              </SwiperSlide>
-            )
-          })}
-        {popularMovies &&
-          popularMovies.map((movie, index) => {
-            return (
-              <SwiperSlide key={`popular-movie-viewer-${index}`}>
-                <CarouselImage path={`${movie?.src}`} />
               </SwiperSlide>
             )
           })}

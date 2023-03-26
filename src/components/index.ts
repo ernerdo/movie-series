@@ -1,5 +1,5 @@
+export * from './Carousel'
 export * from './CarouselImage'
-export * from './CarouselSwiper'
 export * from './Categories'
 export * from './Iframe'
 export * from './MoviePoster'

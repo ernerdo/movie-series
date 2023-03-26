@@ -86,6 +86,31 @@ export const getPopularMovies = async () => {
 }
 
 /**
+ * Get a list of top rated movies from the API
+ * @returns latest movies
+ */
+export const getTopRatedMovies = async () => {
+  try {
+    const response = await baseApiClient.get(`/movie/top_rated`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+/**
+ * Gets a list of upcoming movies from the API
+ * @returns upcoming movies
+ */
+export const getUpcomingMovies = async () => {
+  try {
+    const response = await baseApiClient.get(`/movie/upcoming`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+/**
  * Gets a list of videos from the API
  *
  * @param id id video
