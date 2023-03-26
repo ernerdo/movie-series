@@ -90,11 +90,9 @@ const Home = () => {
         <Flex
           as="section"
           flexDir="column"
-          gap="80px"
-          p="4"
-          w="90%"
-          maxWidth="2048px"
+          px={`10%`}
           margin="auto"
+          gap={`80px`}
         >
           <CarouselMovies title="Most Popular" movies={popularMovies} />
           <MoviePoster movie={popularMovies[1]} />

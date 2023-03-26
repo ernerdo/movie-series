@@ -26,7 +26,7 @@ const Footer = () => {
         textAlign="center"
       >
         <Text>
-          Created by with{' '}
+          Created with{' '}
           <Link href="https://www.themoviedb.org/" target="_blank">
             API TMDB
           </Link>{' '}
@@ -39,11 +39,7 @@ const Footer = () => {
             @darkusphantom
           </Link>
           {' & '}
-          <Link
-            href="https://github.com/ernerdo"
-            target="_blank"
-            fontSize="12px"
-          >
+          <Link href="https://www.ernerdo.com/" target="_blank" fontSize="12px">
             @ernerdo
           </Link>
         </Text>
