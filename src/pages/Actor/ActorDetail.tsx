@@ -1,15 +1,14 @@
-import { GridItem, Stack, Image, Text, VStack, Heading } from '@chakra-ui/react'
+import { GridItem, Heading, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { getActorDetails, getActorMovies } from '../../client/ActorApiClient'
-import { Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 
+import { Carousel } from '../../components'
+import { API_IMAGE_URL } from '../../config'
 import { Actor } from '../../models/actor/actor.model'
 import { Movie } from '../../models/movies/movies.model'
-import { API_IMAGE_URL } from '../../config'
-import { Carousel } from '../../components'
 
 export const ActorDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -28,7 +27,6 @@ export const ActorDetail = () => {
   }, [id])
   return (
     <DefaultLayout>
-      <Header />
       <GridItem area={'main'}>
         {actor && (
           <Stack px={`10%`} gap={5}>
