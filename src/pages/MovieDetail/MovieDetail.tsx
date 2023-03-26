@@ -11,7 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import {
   getCast,
@@ -108,6 +108,19 @@ const MovieDetail = () => {
                   }}
                 />
               </Skeleton>
+              <Link to={`/`}>
+                <Button
+                  position={`fixed`}
+                  style={{
+                    top: '2rem',
+                    left: '2rem',
+                    width: '2rem',
+                    zIndex: 1,
+                  }}
+                >
+                  Back
+                </Button>
+              </Link>
             </Box>
             <Stack px={`10%`}>
               <Flex justifyContent={`space-between`} mb={5}>
