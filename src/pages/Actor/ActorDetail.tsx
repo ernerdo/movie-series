@@ -1,15 +1,14 @@
-import { GridItem, Stack, Image, Text, VStack, Heading } from '@chakra-ui/react'
+import { GridItem, Heading, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { getActorDetails, getActorMovies } from '../../client/ActorApiClient'
-import { Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 
+import { Carousel } from '../../components'
+import { API_IMAGE_URL } from '../../config'
 import { Actor } from '../../models/actor/actor.model'
 import { Movie } from '../../models/movies/movies.model'
-import { API_IMAGE_URL } from '../../config'
-import { Carousel } from '../../components'
 
 export const ActorDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -28,8 +27,7 @@ export const ActorDetail = () => {
   }, [id])
   return (
     <DefaultLayout>
-      <Header />
-      <GridItem bg={'whiteAlpha.100'} area={'main'}>
+      <GridItem area={'main'}>
         {actor && (
           <Stack px={`10%`} gap={5}>
             <Stack
@@ -51,15 +49,15 @@ export const ActorDetail = () => {
                 src={`${API_IMAGE_URL}/original/${actor.profile_path}`}
               />
               <VStack alignItems={`flex-start`} gap={1}>
-                <Heading>
+                <Heading color={`white`}>
                   {actor.name} ({actor.birthday}{' '}
                   {actor.deathday ? ' to ' + actor.deathday : ''})
                 </Heading>
-                <Text>Biography</Text>
-                <Text>
+                <Text color={`white`}>Biography</Text>
+                <Text color={`white`}>
                   {actor.biography} {actor.place_of_birth}
                 </Text>
-                <Text>⭐{actor.popularity}</Text>
+                <Text color={`white`}>⭐{actor.popularity}</Text>
               </VStack>
             </Stack>
             {movies && (

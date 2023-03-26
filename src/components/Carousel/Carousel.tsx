@@ -69,7 +69,7 @@ export const Carousel: FC<Props> = ({ cast, movies }) => {
                   path={`${API_IMAGE_URL}/w200${cast.profile_path}`}
                   actorId={cast.id}
                 />
-                <Text>{cast.name}</Text>
+                <Text color={`white`}>{cast.name}</Text>
               </SwiperSlide>
             )
           })}

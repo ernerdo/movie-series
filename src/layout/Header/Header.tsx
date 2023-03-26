@@ -1,5 +1,6 @@
 import { Flex, GridItem, Input, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {
   children?: ReactNode
@@ -15,14 +16,19 @@ const Header = ({ children }: Props) => {
       gap="3"
       px="2"
       pt="4"
-      pb="2"
       w="100%"
       overflow="hidden"
     >
       <Flex justifyContent="space-around" alignItems="center" mb="16px">
-        <Text as="h2" color="white">
-          Project Movie
-        </Text>
+        <Link to={`/`}>
+          <Text
+            as="h2"
+            color="white"
+            fontSize={{ base: '1.2rem', md: '1.7rem' }}
+          >
+            Project Movie
+          </Text>
+        </Link>
         <Input
           w="70%"
           h="30px"

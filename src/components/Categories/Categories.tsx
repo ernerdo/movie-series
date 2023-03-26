@@ -18,7 +18,25 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
   })
 
   return (
-    <Flex as="nav" gap="12px" p="1" overflow={`auto`} overflowY={`hidden`}>
+    <Flex
+      as="nav"
+      gap="12px"
+      overflow={`auto`}
+      overflowY={`hidden`}
+      css={{
+        '&::-webkit-scrollbar': {
+          width: '4px',
+          height: '2px',
+        },
+        '&::-webkit-scrollbar-track': {
+          width: '6px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: 'white',
+          borderRadius: '24px',
+        },
+      }}
+    >
       {genres?.map((category, i) => (
         <Box
           display="inline-block"
@@ -30,6 +48,7 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
           borderRadius="12px"
           fontSize=".9rem"
           key={i}
+          onClick={() => console.log(category.id)}
         >
           {category?.name}
         </Box>

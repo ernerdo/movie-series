@@ -21,7 +21,6 @@ import {
 } from '../../client/MovieApiClient'
 import { Carousel, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
-import { Footer, Header } from '../../layout'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts/casts.model'
 import { Movie, Trailer } from '../../models/movies/movies.model'
@@ -73,8 +72,7 @@ const MovieDetail = () => {
 
   return (
     <DefaultLayout>
-      <Header />
-      <GridItem bg={'whiteAlpha.100'} area={'main'}>
+      <GridItem area={'main'}>
         {movie && (
           <Stack id={`#top`}>
             <Box
@@ -117,24 +115,24 @@ const MovieDetail = () => {
                   <Heading
                     size={`3xl`}
                     fontSize={`clamp(2rem,3vw,3.5rem)`}
-                    color={`black`}
+                    color={`white`}
                   >
                     {movie.title ? movie.title : movie.original_title}
                   </Heading>
                 </Skeleton>
                 <Skeleton isLoaded={!isLoading}>
-                  <Heading size={`3xl`} color={`black`}>
+                  <Heading size={`3xl`} color={`white`}>
                     {movie.vote_average}
                   </Heading>
                 </Skeleton>
               </Flex>
               <Skeleton isLoaded={!isLoading}>
-                <Text fontSize={`xl`} color={`black`}>
+                <Text fontSize={`xl`} color={`white`}>
                   {movie.release_date}
                 </Text>
               </Skeleton>
               <Skeleton isLoaded={!isLoading}>
-                <Text fontSize={`xl`} color={`black`}>
+                <Text fontSize={`xl`} color={`white`}>
                   {movie.overview}
                 </Text>
               </Skeleton>
@@ -162,19 +160,19 @@ const MovieDetail = () => {
               </Skeleton>
               {cast && (
                 <>
-                  <Heading color={`black`}>Cast</Heading>
+                  <Heading color={`white`}>Cast</Heading>
                   <Carousel cast={cast} />
                 </>
               )}
               {trailer && (
                 <>
-                  <Heading color={`black`}>Trailer</Heading>
+                  <Heading color={`white`}>Trailer</Heading>
                   <Iframe trailer={trailer} />
                 </>
               )}
               {similarMovies && (
                 <>
-                  <Heading color={`black`}>Related movies</Heading>
+                  <Heading color={`white`}>Related movies</Heading>
                   <Carousel movies={similarMovies} />
                 </>
               )}
@@ -182,7 +180,6 @@ const MovieDetail = () => {
           </Stack>
         )}
       </GridItem>
-      <Footer />
     </DefaultLayout>
   )
 }
