@@ -2,6 +2,14 @@ import axios from 'axios'
 
 import { API_KEY, API_URL } from '../config'
 
+const getLanguage = (): string => {
+  if (localStorage.getItem('i18nextLng')) {
+    const langSelected = localStorage.getItem('i18nextLng')
+    return JSON.stringify(langSelected).replaceAll('"', '').toLocaleUpperCase()
+  }
+  return 'en'
+}
+
 const baseApiClient = axios.create({
   baseURL: API_URL,
   headers: {
@@ -9,6 +17,7 @@ const baseApiClient = axios.create({
   },
   params: {
     api_key: API_KEY,
+    language: getLanguage(),
   },
 })
 

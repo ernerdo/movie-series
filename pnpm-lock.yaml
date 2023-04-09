@@ -20,6 +20,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-router-dom: ^6.7.0
+  react-translate: ^7.0.1
   swiper: ^9.1.0
   typescript: ^4.9.3
   vite: ^4.0.0
@@ -34,6 +35,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.7.0_biqbaboplfbrettd7655fr4n2y
+  react-translate: 7.0.1_react@18.2.0
   swiper: 9.1.0
 
 devDependencies:
@@ -4189,6 +4191,15 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.4.1
+    dev: false
+
+  /react-translate/7.0.1_react@18.2.0:
+    resolution: {integrity: sha512-YHKsjj3+3qy6i/lY463I/B1BY5iNc57In/B6pKNiqVYps95mZNTeFIpJAS8M6AmfwLxuHpmrNdI0pvde6jA7Ug==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      invariant: 2.2.4
+      react: 18.2.0
     dev: false
 
   /react/18.2.0:

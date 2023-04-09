@@ -1,0 +1,22 @@
+{
+  "btn": {
+    "select_language": "Select language",
+    "translate": {
+      "default": "Language",
+      "es": "ES",
+      "en": "ENG"
+    }
+  },
+  "home": {
+    "introduction": "Welcome to Catalogue Movie",
+    "introduction_description": "A variety of movies for your entertainment enjoys"
+  },
+  "carousel": {
+    "most_popular_movies": "Popular movies",
+    "top_rated_movies": "Top Rated",
+    "coming_soon_movies": "Coming Soon"
+  },
+  "footer": {
+    "created_by": "Created with"
+  }
+}

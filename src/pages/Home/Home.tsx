@@ -1,21 +1,18 @@
 import { Box, Flex, GridItem, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Genres } from '../../models/categories/categories.model'
 import { AllPopularMovie, Movie } from '../../models/movies/movies.model'
-
 import {
   getPopularMovies,
   getUpcomingMovies,
   getTopRatedMovies,
 } from '../../client/MovieApiClient'
 import { getGenreMovieList } from '../../client/MovieGenreApiClient'
-
 import { API_IMAGE_URL } from '../../config'
-
 import { CarouselMovies } from '../../layout/CarouselMovies'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
-
 import { MoviePoster } from '../../components'
 import { Categories } from '../../components/Categories/Categories'
 
@@ -25,6 +22,7 @@ const initialGenres: Genres = {
 }
 
 const Home = () => {
+  const { t } = useTranslation()
   const [state, setState] = useState({
     loading: true,
     error: false,
@@ -98,10 +96,10 @@ const Home = () => {
             textAlign="center"
           >
             <Text as="h1" fontSize="2.7rem">
-              Welcome to Catalogue Movie
+              {t('home.introduction')}
             </Text>
             <Text as="p" fontSize="1.4rem">
-              A variety of movies for your entertainment enjoys
+              {t('home.introduction_description')}
             </Text>
           </Flex>
           <Box
@@ -115,15 +113,25 @@ const Home = () => {
         <Flex
           as="section"
           flexDir="column"
-          px={`10%`}
+          px="10%"
+          py="10"
           margin="auto"
-          gap={`80px`}
+          gap="80px"
         >
-          <CarouselMovies title="Most Popular" movies={popularMovies} />
+          <CarouselMovies
+            title="carousel.most_popular_movies"
+            movies={popularMovies}
+          />
           <MoviePoster movie={popularMovies[1]} />
-          <CarouselMovies title="Top Rated" movies={topRatedMovies} />
+          <CarouselMovies
+            title="carousel.top_rated_movies"
+            movies={topRatedMovies}
+          />
           <MoviePoster movie={topRatedMovies[1]} />
-          <CarouselMovies title="Coming soon" movies={upcomingMovies} />
+          <CarouselMovies
+            title="carousel.coming_soon_movies"
+            movies={upcomingMovies}
+          />
         </Flex>
       </GridItem>
     </DefaultLayout>
