@@ -5,7 +5,7 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChatIcon } from '@chakra-ui/icons'
 
@@ -31,10 +31,7 @@ const BtnTranslate = () => {
    *
    * @param event - Language switch button click event.
    */
-  const changeLanguage = (
-    // eslint-disable-next-line no-undef
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const changeLanguage = (event: MouseEvent<HTMLButtonElement>) => {
     const langValue = event.currentTarget.getAttribute('value')
     const langSelected = langValue ? langValue.toLowerCase() : initialLanguage
     setLang(langSelected)
