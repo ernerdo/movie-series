@@ -8,10 +8,13 @@ interface CategoriesProps {
 
 const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
   const genres = categoriesList?.genres.map((category) => {
-    if (category.name === 'TV Movie') {
+    if (category.name === 'TV Movie' || category.name === 'Película de TV') {
       category.name = 'TV'
     }
-    if (category.name === 'Science Fiction') {
+    if (
+      category.name === 'Science Fiction' ||
+      category.name === 'Ciencia ficción'
+    ) {
       category.name = 'SCIFI'
     }
     return category

@@ -39,6 +39,7 @@ const BtnTranslate = () => {
     const langSelected = langValue ? langValue.toLowerCase() : initialLanguage
     setLang(langSelected)
     i18n.changeLanguage(langSelected)
+    window.location.reload()
   }
 
   return (

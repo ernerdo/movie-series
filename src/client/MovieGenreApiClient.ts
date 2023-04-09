@@ -3,9 +3,10 @@ import axios from 'axios'
 import { API_KEY, API_URL } from '../config'
 
 const getLanguage = (): string => {
-  if (localStorage.getItem('i18nextLng')) {
-    const langSelected = localStorage.getItem('i18nextLng')
-    return JSON.stringify(langSelected).replaceAll('"', '').toLocaleUpperCase()
+  const key = 'i18nextLng'
+  if (localStorage.getItem(key)) {
+    const langSelected = localStorage.getItem(key)
+    return JSON.stringify(langSelected).replaceAll('"', '')
   }
   return 'en'
 }

@@ -5,7 +5,8 @@
       "default": "Language",
       "es": "ES",
       "en": "ENG"
-    }
+    },
+    "see_more": "See more"
   },
   "home": {
     "introduction": "Welcome to Catalogue Movie",
