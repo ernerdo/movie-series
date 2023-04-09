@@ -11,6 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { BtnTranslate } from '../BtnTranslate'
+import { PageLogo } from '../../components/PageLogo'
 
 const BtnBurger = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,13 +28,15 @@ const BtnBurger = () => {
       />
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-          <DrawerBody position="relative">
+        <DrawerContent bg="darkBlue" color="white">
+          <DrawerHeader borderBottomWidth="1px">
+            <PageLogo />
+          </DrawerHeader>
+          <DrawerBody position="relative" overflow="hidden">
             <p>Categories</p>
             <p>Some contents...</p>
             <Box pos="absolute" bottom="12px" left="20px">
-              <BtnTranslate/>
+              <BtnTranslate />
             </Box>
           </DrawerBody>
         </DrawerContent>

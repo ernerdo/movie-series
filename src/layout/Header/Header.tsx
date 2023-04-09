@@ -1,7 +1,7 @@
-import { Box, Flex, GridItem, Input, Text } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Box, Flex, GridItem, Input } from '@chakra-ui/react'
 import { BtnBurger } from '../../components/BtnBurger'
 import { BtnTranslate } from '../../components/BtnTranslate'
+import { PageLogo } from '../../components/PageLogo'
 
 const Header = () => {
   return (
@@ -17,15 +17,7 @@ const Header = () => {
       overflow="hidden"
     >
       <Flex justifyContent="space-around" alignItems="center" gap="3" mb="16px">
-        <Link to={`/`} style={{ width: '20%' }}>
-          <Text
-            as="h2"
-            color="white"
-            fontSize={{ base: '1.2rem', md: '1.7rem' }}
-          >
-            Project Movie
-          </Text>
-        </Link>
+        <PageLogo />
         <Input
           w="70%"
           maxW=""
