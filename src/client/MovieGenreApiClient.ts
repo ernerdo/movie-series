@@ -1,15 +1,6 @@
 import axios from 'axios'
-
 import { API_KEY, API_URL } from '../config'
-
-const getLanguage = (): string => {
-  const key = 'i18nextLng'
-  if (localStorage.getItem(key)) {
-    const langSelected = localStorage.getItem(key)
-    return JSON.stringify(langSelected).replaceAll('"', '')
-  }
-  return 'en'
-}
+import { getLanguage } from '../utils/languages'
 
 const baseApiClient = axios.create({
   baseURL: API_URL,
@@ -22,6 +13,11 @@ const baseApiClient = axios.create({
   },
 })
 
+/**
+ * Gets the list of movie genres from The Movie Database API.
+ *
+ * @returns A promise that resolves to the list of movie genres, or an exception if an error occurs.
+ */
 export const getGenreMovieList = async () => {
   try {
     const response = await baseApiClient.get('/genre/movie/list')

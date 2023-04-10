@@ -5,6 +5,9 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import common_en from './translations/en.json'
 import common_es from './translations/es.json'
 
+/**
+ * Object that stores the translation resources for each language.
+ */
 const resources = {
   en: {
     translation: common_en,
@@ -14,11 +17,19 @@ const resources = {
   },
 }
 
+/**
+ * Function that obtains the default language of the application from local storage.
+ *
+ * @returns The default language of the application.
+ */
 const defaultLang = (): string => {
   const lang = localStorage.getItem('i18nextLng')
   return !lang ? 'en' : lang
 }
 
+/**
+ * i18n configuration for the application.
+ */
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
