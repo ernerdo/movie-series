@@ -1,5 +1,8 @@
 import axios from 'axios'
 import { API_KEY, API_URL } from '../config'
+import { AllCast } from '../models/casts/casts.model'
+import { AllMovies, Movie } from '../models/movies/movies.model'
+import { MovieVideos } from '../models/movies/video.model'
 import { getLanguage } from '../utils/languages'
 
 const baseApiClient = axios.create({
@@ -21,13 +24,14 @@ const baseApiClient = axios.create({
  * @param id id movie
  * @returns a details movie
  */
-export const getMovieDetails = async (id: number) => {
+export const getMovieDetails = async (id: number): Promise<Movie | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}`)
+    if (response.status === 304) return null
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return null
   }
 }
 
@@ -39,13 +43,15 @@ export const getMovieDetails = async (id: number) => {
  * @param id id movie
  * @returns a similar movie
  */
-export const getSimilarMovies = async (id: number) => {
+export const getSimilarMovies = async (
+  id: number
+): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/similar`)
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return null
   }
 }
 
@@ -57,13 +63,13 @@ export const getSimilarMovies = async (id: number) => {
  * @param id id cast
  * @returns a cast
  */
-export const getCast = async (id: number) => {
+export const getCast = async (id: number): Promise<AllCast | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/credits`)
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return null
   }
 }
 
@@ -92,7 +98,7 @@ export const getImages = async (id: number | string) => {
  * @function
  * @returns popular movies
  */
-export const getPopularMovies = async () => {
+export const getPopularMovies = async (): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/popular`)
     return response.data
@@ -109,13 +115,13 @@ export const getPopularMovies = async () => {
  * @function
  * @returns latest movies
  */
-export const getTopRatedMovies = async () => {
+export const getTopRatedMovies = async (): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/top_rated`)
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return null
   }
 }
 /**
@@ -125,13 +131,13 @@ export const getTopRatedMovies = async () => {
  * @function
  * @returns upcoming movies
  */
-export const getUpcomingMovies = async () => {
+export const getUpcomingMovies = async (): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/upcoming`)
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return null
   }
 }
 
@@ -143,12 +149,14 @@ export const getUpcomingMovies = async () => {
  * @param id id video
  * @returns a movie video
  */
-export const getMovieVideos = async (id: number) => {
+export const getMovieVideos = async (
+  id: number
+): Promise<MovieVideos | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/videos`)
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return null
   }
 }

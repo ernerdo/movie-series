@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_KEY, API_URL } from '../config'
+import { Genres } from '../models/categories/categories.model'
 import { getLanguage } from '../utils/languages'
 
 const baseApiClient = axios.create({
@@ -16,14 +17,16 @@ const baseApiClient = axios.create({
 /**
  * Gets the list of movie genres from The Movie Database API.
  *
+ * @async
+ * @function
  * @returns A promise that resolves to the list of movie genres, or an exception if an error occurs.
  */
-export const getGenreMovieList = async () => {
+export const getGenreMovieList = async (): Promise<Genres> => {
   try {
     const response = await baseApiClient.get('/genre/movie/list')
     return response.data
   } catch (error) {
     console.error(error)
-    return {}
+    return { genres: [] }
   }
 }
