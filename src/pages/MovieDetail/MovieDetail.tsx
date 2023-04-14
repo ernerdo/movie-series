@@ -27,6 +27,7 @@ import { Movie } from '../../models/movies/movies.model'
 import { Trailer } from '../../models/movies/video.model'
 import coverDefault from '../../assets/cover-default.png'
 import { useTranslation } from 'react-i18next'
+import { ArrowBackIcon } from '@chakra-ui/icons'
 
 const MovieDetail = () => {
   const navigate = useNavigate()
@@ -117,7 +118,7 @@ const MovieDetail = () => {
                     zIndex: 1,
                   }}
                 >
-                  {t('btn.back')}
+                  <ArrowBackIcon />
                 </Button>
               </Link>
             </Box>
