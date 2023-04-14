@@ -6,7 +6,8 @@
       "en": "ENG",
       "es": "ES"
     },
-    "see_more": "Ver más"
+    "see_more": "Ver más",
+    "back": "Volver"
   },
   "carousel": {
     "coming_soon_movies": "Próximamente",
@@ -19,5 +20,9 @@
   },
   "footer": {
     "created_by": "Creado con la"
+  },
+  "movie_detail": {
+    "related_movies": "Peliculas relacionadas",
+    "cast": "Actores"
   }
 }

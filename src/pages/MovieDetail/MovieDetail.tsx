@@ -117,7 +117,7 @@ const MovieDetail = () => {
                     zIndex: 1,
                   }}
                 >
-                  Back
+                  {t('btn.back')}
                 </Button>
               </Link>
             </Box>
@@ -172,7 +172,7 @@ const MovieDetail = () => {
               </Skeleton>
               {cast && (
                 <>
-                  <Heading color={`white`}>Cast</Heading>
+                  <Heading color={`white`}>{t('movie_detail.cast')}</Heading>
                   <Carousel cast={cast} />
                 </>
               )}
@@ -182,9 +182,11 @@ const MovieDetail = () => {
                   <Iframe trailer={trailer} />
                 </>
               )}
-              {similarMovies && (
+              {similarMovies.length && (
                 <>
-                  <Heading color={`white`}>Related movies</Heading>
+                  <Heading color={`white`}>
+                    {t('movie_detail.related_movies')}
+                  </Heading>
                   <Carousel movies={similarMovies} />
                 </>
               )}
