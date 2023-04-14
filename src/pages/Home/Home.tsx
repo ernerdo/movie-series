@@ -127,7 +127,7 @@ const Home = () => {
             title="carousel.top_rated_movies"
             movies={topRatedMovies}
           />
-          <MoviePoster movie={topRatedMovies[1]} />
+          <MoviePoster movie={upcomingMovies[1]} />
           <CarouselMovies
             title="carousel.coming_soon_movies"
             movies={upcomingMovies}
