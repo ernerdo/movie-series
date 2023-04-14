@@ -16,6 +16,8 @@ const baseApiClient = axios.create({
 /**
  * Gets the detail of a movie from the API
  *
+ * @async
+ * @function
  * @param id id movie
  * @returns a details movie
  */
@@ -24,13 +26,16 @@ export const getMovieDetails = async (id: number) => {
     const response = await baseApiClient.get(`/movie/${id}`)
     return response.data
   } catch (error) {
-    return error
+    console.error(error)
+    return {}
   }
 }
 
 /**
  * Gets a list of similar movies from the API
  *
+ * @async
+ * @function
  * @param id id movie
  * @returns a similar movie
  */
@@ -40,12 +45,15 @@ export const getSimilarMovies = async (id: number) => {
     return response.data
   } catch (error) {
     console.error(error)
+    return {}
   }
 }
 
 /**
  * Gets a Cast from the API
  *
+ * @async
+ * @function
  * @param id id cast
  * @returns a cast
  */
@@ -55,12 +63,15 @@ export const getCast = async (id: number) => {
     return response.data
   } catch (error) {
     console.error(error)
+    return {}
   }
 }
 
 /**
  * Gets an image of the movie from the API
  *
+ * @async
+ * @function
  * @param id id movie
  * @returns an image movie
  */
@@ -70,12 +81,15 @@ export const getImages = async (id: number | string) => {
     return response.data
   } catch (error) {
     console.error(error)
+    return {}
   }
 }
 
 /**
  * Gets a list of popular movies from the API
  *
+ * @async
+ * @function
  * @returns popular movies
  */
 export const getPopularMovies = async () => {
@@ -84,11 +98,15 @@ export const getPopularMovies = async () => {
     return response.data
   } catch (error) {
     console.error(error)
+    return null
   }
 }
 
 /**
  * Get a list of top rated movies from the API
+ *
+ * @async
+ * @function
  * @returns latest movies
  */
 export const getTopRatedMovies = async () => {
@@ -97,10 +115,14 @@ export const getTopRatedMovies = async () => {
     return response.data
   } catch (error) {
     console.error(error)
+    return {}
   }
 }
 /**
  * Gets a list of upcoming movies from the API
+ *
+ * @async
+ * @function
  * @returns upcoming movies
  */
 export const getUpcomingMovies = async () => {
@@ -109,12 +131,15 @@ export const getUpcomingMovies = async () => {
     return response.data
   } catch (error) {
     console.error(error)
+    return {}
   }
 }
 
 /**
  * Gets a list of videos from the API
  *
+ * @async
+ * @function
  * @param id id video
  * @returns a movie video
  */
@@ -124,5 +149,6 @@ export const getMovieVideos = async (id: number) => {
     return response.data
   } catch (error) {
     console.error(error)
+    return {}
   }
 }
