@@ -1,1 +1,1 @@
-export * from './PageLogo.tsx'
+export * from './PageLogo'

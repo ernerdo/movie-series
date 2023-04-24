@@ -6,7 +6,8 @@
       "es": "ES",
       "en": "ENG"
     },
-    "see_more": "See more"
+    "see_more": "See more",
+    "back": "Back"
   },
   "home": {
     "introduction": "Welcome to Catalogue Movie",
@@ -19,5 +20,9 @@
   },
   "footer": {
     "created_by": "Created with"
+  },
+  "movie_detail": {
+    "related_movies": "Related movies",
+    "cast": "Cast"
   }
 }

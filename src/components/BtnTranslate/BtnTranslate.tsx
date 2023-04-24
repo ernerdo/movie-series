@@ -29,7 +29,13 @@ const BtnTranslate = () => {
   /**
    * Function that changes the language of the application.
    *
+   * Gets the language value from the 'value' property of the button.
+   * If the value exists, it converts it to lowercase. If it does not exist, it uses the initial language.
+   * Updates the state of the current language.
+   * And changes the language in the application using the i18n function.
+   *
    * @param event - Language switch button click event.
+   *
    */
   const changeLanguage = (event: MouseEvent<HTMLButtonElement>) => {
     const langValue = event.currentTarget.getAttribute('value')

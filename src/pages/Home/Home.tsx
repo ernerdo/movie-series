@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Genres } from '../../models/categories/categories.model'
-import { AllPopularMovie, Movie } from '../../models/movies/movies.model'
+import { Movie } from '../../models/movies/movies.model'
 import {
   getPopularMovies,
   getUpcomingMovies,
@@ -39,7 +39,8 @@ const Home = () => {
   useEffect(() => {
     if (state.loading) {
       setTimeout(() => {
-        getPopularMovies().then((movies: AllPopularMovie) => {
+        getPopularMovies().then((movies) => {
+          if (!movies) return
           const movieFormatted = movies.results.map((movie) => ({
             ...movie,
             src: `${API_IMAGE_URL}/original/${movie.poster_path}`,
@@ -50,14 +51,17 @@ const Home = () => {
           setCategoriesList(genre)
         })
 
-        getTopRatedMovies().then((movies: AllPopularMovie) => {
+        getTopRatedMovies().then((movies) => {
+          if (!movies) return
           const movieFormatted = movies.results.map((movie) => ({
             ...movie,
             src: `${API_IMAGE_URL}/original/${movie.poster_path}`,
           }))
           setTopRatedMovies(movieFormatted)
         })
-        getUpcomingMovies().then((movies: AllPopularMovie) => {
+
+        getUpcomingMovies().then((movies) => {
+          if (!movies) return
           const movieFormatted = movies.results.map((movie) => ({
             ...movie,
             src: `${API_IMAGE_URL}/original/${movie.poster_path}`,
@@ -127,7 +131,7 @@ const Home = () => {
             title="carousel.top_rated_movies"
             movies={topRatedMovies}
           />
-          <MoviePoster movie={topRatedMovies[1]} />
+          <MoviePoster movie={upcomingMovies[1]} />
           <CarouselMovies
             title="carousel.coming_soon_movies"
             movies={upcomingMovies}
