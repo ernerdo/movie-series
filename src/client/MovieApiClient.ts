@@ -27,7 +27,7 @@ const baseApiClient = axios.create({
 export const getMovieDetails = async (id: number): Promise<Movie | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}`)
-    if (response.status === 304) return null
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -48,6 +48,7 @@ export const getSimilarMovies = async (
 ): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/similar`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -66,6 +67,7 @@ export const getSimilarMovies = async (
 export const getCast = async (id: number): Promise<AllCast | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/credits`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -84,6 +86,7 @@ export const getCast = async (id: number): Promise<AllCast | null> => {
 export const getImages = async (id: number | string) => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/images`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -101,6 +104,7 @@ export const getImages = async (id: number | string) => {
 export const getPopularMovies = async (): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/popular`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -118,6 +122,7 @@ export const getPopularMovies = async (): Promise<AllMovies | null> => {
 export const getTopRatedMovies = async (): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/top_rated`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -134,6 +139,7 @@ export const getTopRatedMovies = async (): Promise<AllMovies | null> => {
 export const getUpcomingMovies = async (): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`/movie/upcoming`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
@@ -154,6 +160,7 @@ export const getMovieVideos = async (
 ): Promise<MovieVideos | null> => {
   try {
     const response = await baseApiClient.get(`/movie/${id}/videos`)
+    if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {
     console.error(error)
