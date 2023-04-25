@@ -8,7 +8,7 @@
  */
 export const getLanguage = (): string => {
   const key = 'i18nextLng'
-  if (localStorage.getItem(key)) {
+  if (typeof window !== 'undefined' && localStorage.getItem(key)) {
     const langSelected = localStorage.getItem(key)
     return JSON.stringify(langSelected).replaceAll('"', '')
   }
