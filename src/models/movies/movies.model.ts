@@ -1,18 +1,16 @@
-export interface Genres {
-  id: number
-  name: string
-}
+import { Genre } from "../categories/categories.model"
+
 export interface Movie {
   id: number
   title: string
   overview: string
   backdrop_path: string
   poster_path: string
-  genres: Genres[]
+  genres: Genre[]
   vote_average: number
   release_date: string
   original_title: string
-  adult: boolean
+  adult: boolean | null;
   genre_ids: number[]
   original_language: string
   popularity: number
@@ -21,14 +19,7 @@ export interface Movie {
   vote_count: number
 }
 
-export interface Trailer {
-  id: string
-  key: string
-  name: string
-  site: string
-  type: string
-}
-export interface AllPopularMovie {
+export interface AllMovies {
   page: number
   results: Movie[]
   total_pages: number

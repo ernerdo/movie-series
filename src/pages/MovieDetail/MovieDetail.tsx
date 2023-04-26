@@ -23,8 +23,11 @@ import { Carousel, Iframe } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts/casts.model'
-import { Movie, Trailer } from '../../models/movies/movies.model'
+import { Movie } from '../../models/movies/movies.model'
+import { Trailer } from '../../models/movies/video.model'
 import coverDefault from '../../assets/cover-default.png'
+import { useTranslation } from 'react-i18next'
+import { ArrowBackIcon } from '@chakra-ui/icons'
 
 const MovieDetail = () => {
   const navigate = useNavigate()
@@ -34,18 +37,17 @@ const MovieDetail = () => {
   const [trailer, setTrailer] = useState<Trailer>()
   const { id } = useParams<{ id: string }>()
   const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     getMovieDetails(Number(id)).then((response) => {
-      if (response?.response?.data?.status_code === 34 || !response) {
-        navigate('/')
-      }
-      setMovie(response)
+      if (!response) navigate('/')
+      if (response) setMovie(response)
     })
     getSimilarMovies(Number(id)).then((response) => {
       if (!response) return
-      const similarMoviesWithBackdrop: Movie[] = response?.results.filter(
-        (movie: Movie, index: number, array: Movie[]) =>
+      const similarMoviesWithBackdrop = response.results.filter(
+        (movie, index, array) =>
           array.findIndex((m) => m.id === movie.id) === index &&
           movie.poster_path
       )
@@ -53,8 +55,8 @@ const MovieDetail = () => {
     })
     getCast(Number(id)).then((response) => {
       if (!response) return
-      const castUniqueWithBackdrop: Cast[] = response?.cast.filter(
-        (cast: Cast, index: number, array: Cast[]) =>
+      const castUniqueWithBackdrop = response.cast.filter(
+        (cast, index, array) =>
           array.findIndex((c) => c.id === cast.id) === index &&
           cast.profile_path
       )
@@ -62,9 +64,7 @@ const MovieDetail = () => {
     })
     getMovieVideos(Number(id)).then((response) => {
       if (!response) return
-      const youTube = response?.results.find(
-        (video: Trailer) => video.type === 'Trailer'
-      )
+      const youTube = response.results.find((video) => video.type === 'Trailer')
       setTrailer(youTube)
     })
     window.scrollTo({ behavior: 'smooth', top: 0 })
@@ -118,7 +118,7 @@ const MovieDetail = () => {
                     zIndex: 1,
                   }}
                 >
-                  Back
+                  <ArrowBackIcon />
                 </Button>
               </Link>
             </Box>
@@ -173,7 +173,7 @@ const MovieDetail = () => {
               </Skeleton>
               {cast && (
                 <>
-                  <Heading color={`white`}>Cast</Heading>
+                  <Heading color={`white`}>{t('movie_detail.cast')}</Heading>
                   <Carousel cast={cast} />
                 </>
               )}
@@ -183,9 +183,11 @@ const MovieDetail = () => {
                   <Iframe trailer={trailer} />
                 </>
               )}
-              {similarMovies && (
+              {similarMovies.length && (
                 <>
-                  <Heading color={`white`}>Related movies</Heading>
+                  <Heading color={`white`}>
+                    {t('movie_detail.related_movies')}
+                  </Heading>
                   <Carousel movies={similarMovies} />
                 </>
               )}

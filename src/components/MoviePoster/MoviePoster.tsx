@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Movie } from '../../models/movies/movies.model'
 
 interface MoviePosterComponent {
@@ -20,6 +21,7 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
   const rate = !movie?.vote_average ? 0 : movie?.vote_average
   const movieRate = rate * 10
   const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
 
   return (
     <Flex
@@ -55,7 +57,7 @@ const MoviePoster: FC<MoviePosterComponent> = ({ movie }) => {
               alignSelf="center"
               order="2"
             >
-              See more
+              {t('btn.see_more')}
             </Button>
           </Link>
         </Skeleton>

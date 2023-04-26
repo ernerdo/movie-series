@@ -1,0 +1,28 @@
+{
+  "btn": {
+    "select_language": "Elige un idioma",
+    "translate": {
+      "default": "Language",
+      "en": "ENG",
+      "es": "ES"
+    },
+    "see_more": "Ver más",
+    "back": "Volver"
+  },
+  "carousel": {
+    "coming_soon_movies": "Próximamente",
+    "most_popular_movies": "La más populares",
+    "top_rated_movies": "Mejor valorados"
+  },
+  "home": {
+    "introduction": "Bienvenido al catálogo de peliculas",
+    "introduction_description": "Una gran variedad de películas para su entretenimiento"
+  },
+  "footer": {
+    "created_by": "Creado con la"
+  },
+  "movie_detail": {
+    "related_movies": "Peliculas relacionadas",
+    "cast": "Actores"
+  }
+}
