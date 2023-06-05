@@ -1,7 +1,8 @@
-import { Box, Flex, GridItem, Input } from '@chakra-ui/react'
+import { Box, Flex, GridItem } from '@chakra-ui/react'
 import { BtnBurger } from '../../components/BtnBurger'
 import { BtnTranslate } from '../../components/BtnTranslate'
 import { PageLogo } from '../../components/PageLogo'
+import { Searchbar } from '../../components/Searchbar'
 
 const Header = () => {
   return (
@@ -16,15 +17,14 @@ const Header = () => {
       w="100%"
       overflow="hidden"
     >
-      <Flex justifyContent="space-around" alignItems="center" gap="3" mb="16px">
+      <Flex
+        justifyContent="space-around"
+        alignItems="center"
+        gap="3"
+        mb="16px"
+      >
         <PageLogo />
-        <Input
-          w="70%"
-          maxW=""
-          h="30px"
-          color="white"
-          placeholder="Search a movie, serie, stream..."
-        />
+        <Searchbar />
         <Box
           w="30%"
           maxW="75px"

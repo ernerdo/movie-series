@@ -24,5 +24,8 @@
   "movie_detail": {
     "related_movies": "Related movies",
     "cast": "Cast"
+  },
+  "placeholder": {
+    "searchbar": "Search a movie..."
   }
 }
