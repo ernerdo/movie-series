@@ -1,19 +1,18 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, ChangeEvent } from 'react'
 import { Box, Input } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { MovieDataContext } from '../../context/context'
 
 const Searchbar = () => {
-  const movieData = useContext(MovieDataContext);
+  const movieData = useContext(MovieDataContext)
   const { t } = useTranslation()
   const placeholder = t('placeholder.searchbar')
 
   const [foundMovie, setFoundMovie] = useState<string[]>([])
   const [searchbarValue, setSearchbarValue] = useState<string>('')
 
-
-  const onSearchElement = (event: any) => {
+  const onSearchElement = (event: ChangeEvent<HTMLInputElement>) => {
     if (movieData.length) {
       const inputValue = event.target.value.toLocaleLowerCase()
       setSearchbarValue(inputValue)
