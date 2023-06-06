@@ -1,14 +1,18 @@
 import { useState, useContext, ChangeEvent } from 'react'
-import { Box, Input } from '@chakra-ui/react'
-import { SearchIcon } from '@chakra-ui/icons'
+import { Box } from '@chakra-ui/react'
+// import { SearchIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { MovieDataContext } from '../../context/context'
+import Autosuggest from 'react-autosuggest'
 
 const Searchbar = () => {
-  const movieData = useContext(MovieDataContext)
   const { t } = useTranslation()
   const placeholder = t('placeholder.searchbar')
 
+  const movieData = useContext(MovieDataContext)
+  const data = movieData.map((movie) => movie.title.toLocaleLowerCase())
+
+  const [movies, setMovies] = useState(data)
   const [foundMovie, setFoundMovie] = useState<string[]>([])
   const [searchbarValue, setSearchbarValue] = useState<string>('')
 
@@ -16,10 +20,6 @@ const Searchbar = () => {
     if (movieData.length) {
       const inputValue = event.target.value.toLocaleLowerCase()
       setSearchbarValue(inputValue)
-
-      const moviesNames = movieData.map((movie) =>
-        movie.title.toLocaleLowerCase()
-      )
 
       const isMovie = (movie: string) => movie === inputValue
       const movieFound = moviesNames.filter(isMovie)
@@ -30,7 +30,16 @@ const Searchbar = () => {
 
   return (
     <Box>
-      <Box w="70%" maxW="" h="30px" position="relative">
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+      />
+
+      {/* <Box w="70%" maxW="" h="30px" position="relative">
         <Input
           w="100%"
           h="100%"
@@ -55,7 +64,7 @@ const Searchbar = () => {
         >
           Soy una caja
         </Box>
-      )}
+      )} */}
     </Box>
   )
 }
