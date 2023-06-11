@@ -15,14 +15,10 @@ const Header = () => {
       px="2"
       pt="4"
       w="100%"
+      height="320px"
       overflow="hidden"
     >
-      <Flex
-        justifyContent="space-around"
-        alignItems="center"
-        gap="3"
-        mb="16px"
-      >
+      <Flex justifyContent="space-around" alignItems="center" gap="3" mb="16px">
         <PageLogo />
         <Searchbar />
         <Box

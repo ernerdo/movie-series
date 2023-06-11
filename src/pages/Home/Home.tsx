@@ -15,7 +15,6 @@ import { CarouselMovies } from '../../layout/CarouselMovies'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { MoviePoster } from '../../components'
 import { Categories } from '../../components/Categories/Categories'
-import { MovieDataContext } from '../../context/Context'
 
 const initialPopularMovie: Movie[] = []
 const initialGenres: Genres = {
@@ -84,7 +83,6 @@ const Home = () => {
     })
 
   return (
-    <MovieDataContext.Provider value={popularMovies}>
       <DefaultLayout>
         <GridItem as="main">
           <Categories categoriesList={genres} />
@@ -141,7 +139,6 @@ const Home = () => {
           </Flex>
         </GridItem>
       </DefaultLayout>
-    </MovieDataContext.Provider>
   )
 }
 export default Home
