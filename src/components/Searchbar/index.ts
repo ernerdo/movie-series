@@ -1,1 +1,1 @@
-export * from './Searchbar-copy'
+export * from './Searchbar'

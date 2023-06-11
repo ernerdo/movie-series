@@ -1,81 +1,78 @@
 import { useState, useContext } from 'react'
-import { Box } from '@chakra-ui/react'
-// import { SearchIcon } from '@chakra-ui/icons'
+import { Box, Flex, IconButton, Input, List, ListItem } from '@chakra-ui/react'
+import { SearchIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { MovieDataContext } from '../../context/Context'
-import Autosuggest from 'react-autosuggest'
+import { useCombobox } from 'downshift'
+import { Movie } from '../../models/movies/movies.model'
 
 const Searchbar = () => {
   const { t } = useTranslation()
   const placeholder = t('placeholder.searchbar')
 
   const movieData = useContext(MovieDataContext)
-  const data = movieData.map((movie) => movie.title.toLocaleLowerCase())
+  const [inputItems, setInputItems] = useState<Movie[]>([])
 
-  const [movies, setMovies] = useState<string[]>(data)
-  const [value, setValue] = useState<string>('')
-  const [suggestSelected, setSuggestSelected] = useState<string>()
-
-  // event: ChangeEvent<HTMLInputElement>
-  const filteringMovies = (input: any) => {
-    console.log(input)
-    const inputValue = input.value.trim().toLocaleLowerCase()
-    const dataFiltered = data.filter((movie) => {
-      const isMovieCoincidence = movie
-        .toLocaleLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300 \u036)]/g, '')
-        .includes(inputValue)
-      if (isMovieCoincidence) return movie
-    })
-
-    return !inputValue.length ? [] : dataFiltered
-  }
-  const onSuggestionsFetchRequested = (value: any) => {
-    setMovies(filteringMovies(value))
+  const getMovieFiltered = (inputValue: string | undefined) => {
+    const word = !inputValue ? '' : inputValue.toLocaleLowerCase()
+    return movieData.filter((movie) =>
+      movie.title.toLocaleLowerCase().startsWith(word)
+    )
   }
 
-  const onSuggestionsClearRequested = () => setMovies([])
-
-  const getSuggestionValue = (suggestion: string) => `${suggestion}`
-
-  const selectSuggest = (value: string) => setSuggestSelected(value)
-  const renderSuggestion = (suggestion: string) => (
-    <Box
-      w="100%"
-      h="554px"
-      p="12px"
-      bg="white"
-      color="black"
-      position="absolute"
-      top="80px"
-      left="0"
-      zIndex="3"
-      onClick={() => selectSuggest(suggestion)}
-    >
-      `${suggestion}`
-    </Box>
-  )
-
-  const onChange = (event: any, { newValue }: { newValue: string }) =>
-    setValue(newValue)
-
-  const inputProps = {
-    placeholder,
-    value,
-    onChange,
+  const goToMovie = (movieId: number) => {
+    const url = `${window.location.href}detail/${movieId}`
+    window.location.assign(url)
   }
+
+  const {
+    isOpen,
+    getMenuProps,
+    getInputProps,
+    getItemProps,
+    getToggleButtonProps,
+  } = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) =>
+      setInputItems(getMovieFiltered(inputValue)),
+  })
 
   return (
-    <Box>
-      <Autosuggest
-        suggestions={movies}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      />
+    <Box position="relative">
+      <Flex pos="relative">
+        <Input placeholder={placeholder} color="#fff" {...getInputProps()} />
+        <IconButton
+          aria-label="Search movie"
+          icon={<SearchIcon />}
+          pos="absolute"
+          right="0"
+          {...getToggleButtonProps()}
+        />
+      </Flex>
+      <List
+        as="ul"
+        pos="absolute"
+        w="100%"
+        maxHeight={240}
+        overflowY="scroll"
+        background="#fff"
+        color="#000"
+        zIndex="1"
+        {...getMenuProps()}
+      >
+        {isOpen &&
+          inputItems.map((item, index) => (
+            <ListItem
+              key={index}
+              {...getItemProps({ item, index })}
+              onClick={() => goToMovie(item.id)}
+            >
+              {/* <Link to={`/detail/${item.id}`}> */}
+              {item.title}
+              {/* </Link> */}
+            </ListItem>
+          ))}
+      </List>
     </Box>
   )
 }
