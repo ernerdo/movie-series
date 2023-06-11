@@ -15,7 +15,7 @@ import { CarouselMovies } from '../../layout/CarouselMovies'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { MoviePoster } from '../../components'
 import { Categories } from '../../components/Categories/Categories'
-import { MovieDataContext } from '../../context/context'
+import { MovieDataContext } from '../../context/Context'
 
 const initialPopularMovie: Movie[] = []
 const initialGenres: Genres = {
