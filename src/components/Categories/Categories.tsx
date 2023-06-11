@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { FC } from 'react'
 import { Genres } from '../../models/categories/categories.model'
+import { Link } from 'react-router-dom'
 
 interface CategoriesProps {
   categoriesList?: Genres
@@ -24,8 +25,6 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
     <Flex
       as="nav"
       gap="12px"
-      overflow={`auto`}
-      overflowY={`hidden`}
       css={{
         '&::-webkit-scrollbar': {
           width: '4px',
@@ -39,22 +38,35 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
           borderRadius: '24px',
         },
       }}
+      wrap={`wrap`}
     >
-      {genres?.map((category, i) => (
-        <Box
-          display="inline-block"
-          h="max-content"
-          color="white"
-          bg="darkBlue"
-          py="1"
-          px="3"
-          borderRadius="12px"
-          fontSize=".9rem"
-          key={i}
-          onClick={() => console.log(category.id)}
+      {genres?.map((category) => (
+        <Link
+          to={`/category/${category?.id}`}
+          key={category.id}
+          preventScrollReset={false}
         >
-          {category?.name}
-        </Box>
+          <Box
+            display="inline-block"
+            h="max-content"
+            color="white"
+            bg="darkBlue"
+            py="1"
+            px="3"
+            borderRadius="12px"
+            fontSize=".9rem"
+            _hover={{
+              cursor: 'pointer',
+              bg: 'lightBlue',
+              color: 'darkBlue',
+              transform: 'scale(1.1)',
+              translateY: '-10px',
+              transition: 'all .3s ease',
+            }}
+          >
+            {category?.name}
+          </Box>
+        </Link>
       ))}
     </Flex>
   )

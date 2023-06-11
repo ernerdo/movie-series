@@ -85,7 +85,6 @@ const Home = () => {
   return (
     <DefaultLayout>
       <GridItem as="main">
-        <Categories categoriesList={genres} />
         <Flex h="300px" position="relative">
           <Flex
             flexDir="column"
@@ -122,6 +121,7 @@ const Home = () => {
           margin="auto"
           gap="80px"
         >
+          <Categories categoriesList={genres} />
           <CarouselMovies
             title="carousel.most_popular_movies"
             movies={popularMovies}
