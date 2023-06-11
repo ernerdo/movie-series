@@ -1,8 +1,8 @@
-import { useState, useContext, ChangeEvent } from 'react'
+import { useState, useContext } from 'react'
 import { Box } from '@chakra-ui/react'
 // import { SearchIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next'
-import { MovieDataContext } from '../../context/context'
+import { MovieDataContext } from '../../context/Context'
 import Autosuggest from 'react-autosuggest'
 
 const Searchbar = () => {
@@ -12,59 +12,70 @@ const Searchbar = () => {
   const movieData = useContext(MovieDataContext)
   const data = movieData.map((movie) => movie.title.toLocaleLowerCase())
 
-  const [movies, setMovies] = useState(data)
-  const [foundMovie, setFoundMovie] = useState<string[]>([])
-  const [searchbarValue, setSearchbarValue] = useState<string>('')
+  const [movies, setMovies] = useState<string[]>(data)
+  const [value, setValue] = useState<string>('')
+  const [suggestSelected, setSuggestSelected] = useState<string>()
 
-  const onSearchElement = (event: ChangeEvent<HTMLInputElement>) => {
-    if (movieData.length) {
-      const inputValue = event.target.value.toLocaleLowerCase()
-      setSearchbarValue(inputValue)
+  // event: ChangeEvent<HTMLInputElement>
+  const filteringMovies = (input: any) => {
+    console.log(input)
+    const inputValue = input.value.trim().toLocaleLowerCase()
+    const dataFiltered = data.filter((movie) => {
+      const isMovieCoincidence = movie
+        .toLocaleLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300 \u036)]/g, '')
+        .includes(inputValue)
+      if (isMovieCoincidence) return movie
+    })
 
-      const isMovie = (movie: string) => movie === inputValue
-      const movieFound = moviesNames.filter(isMovie)
-      setFoundMovie(movieFound)
-      console.log(foundMovie)
-    }
+    return !inputValue.length ? [] : dataFiltered
+  }
+  const onSuggestionsFetchRequested = (value: any) => {
+    setMovies(filteringMovies(value))
+  }
+
+  const onSuggestionsClearRequested = () => setMovies([])
+
+  const getSuggestionValue = (suggestion: string) => `${suggestion}`
+
+  const selectSuggest = (value: string) => setSuggestSelected(value)
+  const renderSuggestion = (suggestion: string) => (
+    <Box
+      w="100%"
+      h="554px"
+      p="12px"
+      bg="white"
+      color="black"
+      position="absolute"
+      top="80px"
+      left="0"
+      zIndex="3"
+      onClick={() => selectSuggest(suggestion)}
+    >
+      `${suggestion}`
+    </Box>
+  )
+
+  const onChange = (event: any, { newValue }: { newValue: string }) =>
+    setValue(newValue)
+
+  const inputProps = {
+    placeholder,
+    value,
+    onChange,
   }
 
   return (
     <Box>
       <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        suggestions={movies}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
       />
-
-      {/* <Box w="70%" maxW="" h="30px" position="relative">
-        <Input
-          w="100%"
-          h="100%"
-          pl="30px"
-          color="white"
-          placeholder={`${placeholder}`}
-          onChange={onSearchElement}
-        />
-        <SearchIcon color="white" position="absolute" left="8px" top="8px" />
-      </Box>
-      {searchbarValue.length && (
-        <Box
-          w="100%"
-          h="554px"
-          p="12px"
-          bg="white"
-          color="black"
-          position="absolute"
-          top="80px"
-          left="0"
-          zIndex="3"
-        >
-          Soy una caja
-        </Box>
-      )} */}
     </Box>
   )
 }
