@@ -175,12 +175,14 @@ export const getMovieVideos = async (
  * @returns a movie
  */
 export const getMoviesByCategory = async (
-  category: number
+  category: number,
+  page?: number
 ): Promise<AllMovies | null> => {
   try {
     const response = await baseApiClient.get(`discover/movie`, {
       params: {
         with_genres: category,
+        page: page,
       },
     })
     if (response.status === 404 || response.status === 401) return null
