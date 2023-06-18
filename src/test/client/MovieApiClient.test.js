@@ -8,6 +8,7 @@ import {
   getTopRatedMovies,
   getUpcomingMovies,
   getMovieVideos,
+  getMoviesByCategory,
 } from '../../client/MovieApiClient'
 
 describe('MovieApiClient for getMovieDetails', () => {
@@ -58,5 +59,11 @@ describe('MovieApiClient for getUpcomingMovies', () => {
   test('getUpcomingMovies search movie Finding Nemo', async () => {
     const upcomingMovies = await getUpcomingMovies()
     expect(upcomingMovies.results.length).greaterThanOrEqual(1)
+  })
+})
+describe('MovieApiClient for getMoviesByCategory', () => {
+  test('getMoviesByCategory search ', async () => {
+    const moviesByCategory = await getMoviesByCategory(99)
+    expect(moviesByCategory.results.length).greaterThanOrEqual(1)
   })
 })
