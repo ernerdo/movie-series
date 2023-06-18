@@ -1,7 +1,7 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { FC } from 'react'
 import { Genres } from '../../models/categories/categories.model'
-import { Link } from 'react-router-dom'
+import { Tags } from '../Tags'
 
 interface CategoriesProps {
   categoriesList?: Genres
@@ -41,32 +41,7 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
       wrap={`wrap`}
     >
       {genres?.map((category) => (
-        <Link
-          to={`/category/${category?.id}`}
-          key={category.id}
-          preventScrollReset={false}
-        >
-          <Box
-            display="inline-block"
-            h="max-content"
-            color="white"
-            bg="darkBlue"
-            py="1"
-            px="3"
-            borderRadius="12px"
-            fontSize=".9rem"
-            _hover={{
-              cursor: 'pointer',
-              bg: 'lightBlue',
-              color: 'darkBlue',
-              transform: 'scale(1.1)',
-              translateY: '-10px',
-              transition: 'all .3s ease',
-            }}
-          >
-            {category?.name}
-          </Box>
-        </Link>
+        <Tags category={category} key={category.id} />
       ))}
     </Flex>
   )

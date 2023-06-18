@@ -2,9 +2,9 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getMoviesByCategory } from '../../client/MovieApiClient'
+import { CardMovie } from '../../components'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Movie } from '../../models/movies/movies.model'
-import { CardMovie } from '../../components'
 
 export const CategoryMovies = () => {
   const { id } = useParams<{ id: string }>()
@@ -27,7 +27,7 @@ export const CategoryMovies = () => {
       rootMargin: '0px',
       threshold: 0.5,
     }
-    const handleIntersection: IntersectionObserverCallback = (entries) => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setCurrentPage((prevPage) => prevPage + 1)
