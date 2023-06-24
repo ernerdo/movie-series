@@ -153,21 +153,26 @@ const MovieDetail = () => {
                 <HStack gap={5} mb={5} wrap={`wrap`}>
                   {movie.genres &&
                     movie.genres.map((genre) => (
-                      <Box key={genre.id}>
-                        <Button
-                          colorScheme="blue"
-                          size="md"
-                          onClick={() => console.log(genre.name)}
-                          _hover={{
-                            bg: 'blue.500',
-                            color: 'white',
-                            transform: 'scale(1.05)',
-                            translateY: '-2px',
-                          }}
-                        >
-                          {genre.name}
-                        </Button>
-                      </Box>
+                      <Link
+                        to={`/category/${genre?.id}`}
+                        key={genre.id}
+                        preventScrollReset={false}
+                      >
+                        <Box key={genre.id}>
+                          <Button
+                            colorScheme="blue"
+                            size="md"
+                            _hover={{
+                              bg: 'blue.500',
+                              color: 'white',
+                              transform: 'scale(1.05)',
+                              translateY: '-2px',
+                            }}
+                          >
+                            {genre.name}
+                          </Button>
+                        </Box>
+                      </Link>
                     ))}
                 </HStack>
               </Skeleton>

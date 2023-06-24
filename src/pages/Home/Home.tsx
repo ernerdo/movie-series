@@ -83,62 +83,62 @@ const Home = () => {
     })
 
   return (
-      <DefaultLayout>
-        <GridItem as="main">
-          <Categories categoriesList={genres} />
-          <Flex h="300px" position="relative">
-            <Flex
-              flexDir="column"
-              gap="20px"
-              color="white"
-              w="100%"
-              position="absolute"
-              top="50%"
-              left="50%"
-              transform="translate(-50%, -50%)"
-              zIndex="1"
-              textAlign="center"
-            >
-              <Text as="h1" fontSize="2.7rem">
-                {t('home.introduction')}
-              </Text>
-              <Text as="p" fontSize="1.4rem">
-                {t('home.introduction_description')}
-              </Text>
-            </Flex>
-            <Box
-              w="100%"
-              h="100%"
-              bg='url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80") no-repeat center center'
-              bgSize="cover"
-              filter="blur(2px)"
-            />
-          </Flex>
+    <DefaultLayout>
+      <GridItem as="main">
+        <Flex h="300px" position="relative">
           <Flex
-            as="section"
             flexDir="column"
-            px="10%"
-            py="10"
-            margin="auto"
-            gap="80px"
+            gap="20px"
+            color="white"
+            w="100%"
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            zIndex="1"
+            textAlign="center"
           >
-            <CarouselMovies
-              title="carousel.most_popular_movies"
-              movies={popularMovies}
-            />
-            <MoviePoster movie={popularMovies[1]} />
-            <CarouselMovies
-              title="carousel.top_rated_movies"
-              movies={topRatedMovies}
-            />
-            <MoviePoster movie={upcomingMovies[1]} />
-            <CarouselMovies
-              title="carousel.coming_soon_movies"
-              movies={upcomingMovies}
-            />
+            <Text as="h1" fontSize="2.7rem">
+              {t('home.introduction')}
+            </Text>
+            <Text as="p" fontSize="1.4rem">
+              {t('home.introduction_description')}
+            </Text>
           </Flex>
-        </GridItem>
-      </DefaultLayout>
+          <Box
+            w="100%"
+            h="100%"
+            bg='url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80") no-repeat center center'
+            bgSize="cover"
+            filter="blur(2px)"
+          />
+        </Flex>
+        <Flex
+          as="section"
+          flexDir="column"
+          px="10%"
+          py="10"
+          margin="auto"
+          gap="80px"
+        >
+          <Categories categoriesList={genres} />
+          <CarouselMovies
+            title="carousel.most_popular_movies"
+            movies={popularMovies}
+          />
+          <MoviePoster movie={popularMovies[1]} />
+          <CarouselMovies
+            title="carousel.top_rated_movies"
+            movies={topRatedMovies}
+          />
+          <MoviePoster movie={upcomingMovies[1]} />
+          <CarouselMovies
+            title="carousel.coming_soon_movies"
+            movies={upcomingMovies}
+          />
+        </Flex>
+      </GridItem>
+    </DefaultLayout>
   )
 }
 export default Home

@@ -1,6 +1,7 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { FC } from 'react'
 import { Genres } from '../../models/categories/categories.model'
+import { Tags } from '../Tags'
 
 interface CategoriesProps {
   categoriesList?: Genres
@@ -24,8 +25,6 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
     <Flex
       as="nav"
       gap="12px"
-      overflow={`auto`}
-      overflowY={`hidden`}
       css={{
         '&::-webkit-scrollbar': {
           width: '4px',
@@ -39,22 +38,10 @@ const Categories: FC<CategoriesProps> = ({ categoriesList }) => {
           borderRadius: '24px',
         },
       }}
+      wrap={`wrap`}
     >
-      {genres?.map((category, i) => (
-        <Box
-          display="inline-block"
-          h="max-content"
-          color="white"
-          bg="darkBlue"
-          py="1"
-          px="3"
-          borderRadius="12px"
-          fontSize=".9rem"
-          key={i}
-          onClick={() => console.log(category.id)}
-        >
-          {category?.name}
-        </Box>
+      {genres?.map((category) => (
+        <Tags category={category} key={category.id} />
       ))}
     </Flex>
   )
