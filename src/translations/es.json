@@ -24,5 +24,8 @@
   "movie_detail": {
     "related_movies": "Peliculas relacionadas",
     "cast": "Actores"
+  },
+  "placeholder": {
+    "searchbar": "Buscar pelicula..."
   }
 }
