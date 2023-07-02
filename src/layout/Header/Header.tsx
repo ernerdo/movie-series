@@ -1,12 +1,10 @@
-import { Flex, GridItem, Input, Text } from '@chakra-ui/react'
-import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Box, Flex, GridItem } from '@chakra-ui/react'
+import { BtnBurger } from '../../components/BtnBurger'
+import { BtnTranslate } from '../../components/BtnTranslate'
+import { PageLogo } from '../../components/PageLogo'
+import { Searchbar } from '../../components/Searchbar'
 
-type Props = {
-  children?: ReactNode
-}
-
-const Header = ({ children }: Props) => {
+const Header = () => {
   return (
     <GridItem
       as="header"
@@ -17,26 +15,22 @@ const Header = ({ children }: Props) => {
       px="2"
       pt="4"
       w="100%"
+      height="320px"
       overflow="hidden"
     >
-      <Flex justifyContent="space-around" alignItems="center" mb="16px">
-        <Link to={`/`}>
-          <Text
-            as="h2"
-            color="white"
-            fontSize={{ base: '1.2rem', md: '1.7rem' }}
-          >
-            Project Movie
-          </Text>
-        </Link>
-        <Input
-          w="70%"
-          h="30px"
+      <Flex justifyContent="space-around" alignItems="center" gap="3" mb="16px">
+        <PageLogo />
+        <Searchbar />
+        <Box
+          w="30%"
+          maxW="75px"
           color="white"
-          placeholder="Search a movie, serie, stream..."
-        />
+          display={{ base: 'none', lg: 'block' }}
+        >
+          <BtnTranslate />
+        </Box>
+        <BtnBurger />
       </Flex>
-      {children}
     </GridItem>
   )
 }

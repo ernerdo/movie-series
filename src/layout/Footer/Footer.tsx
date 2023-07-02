@@ -1,5 +1,8 @@
 import { GridItem, Text, Link, Flex } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
+
 const Footer = () => {
+  const { t } = useTranslation()
   return (
     <GridItem
       as="footer"
@@ -26,7 +29,7 @@ const Footer = () => {
         textAlign="center"
       >
         <Text>
-          Created with{' '}
+          {t('footer.created_by')}{' '}
           <Link href="https://www.themoviedb.org/" target="_blank">
             API TMDB
           </Link>{' '}

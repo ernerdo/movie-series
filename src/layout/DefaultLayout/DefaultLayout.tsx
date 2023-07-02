@@ -11,7 +11,7 @@ const DefaultLayout = ({ children }: Props) => {
   const location = useLocation()
   const detailRouteRegex = /^\/detail\/\d+$/
   const isDetailRoute = detailRouteRegex.test(location.pathname)
-  const headerSize = !isDetailRoute ? '120px' : '0px'
+  const headerSize = !isDetailRoute ? '80px' : '0px'
   return (
     <Grid
       templateAreas={`"header"

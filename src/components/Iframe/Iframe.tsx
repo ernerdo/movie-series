@@ -1,6 +1,6 @@
 import { Box, Skeleton } from '@chakra-ui/react'
 import { FC, useState } from 'react'
-import { Trailer } from '../../models/movies/movies.model'
+import { Trailer } from '../../models/movies/video.model'
 
 interface Props {
   trailer: Trailer

@@ -1,4 +1,4 @@
-import { ActorDetail, MovieDetail } from '../pages'
+import { ActorDetail, CategoryMovies, MovieDetail } from '../pages'
 import React from 'react'
 import {
   BrowserRouter as Router,
@@ -20,6 +20,7 @@ const RouterConfig = ({ children }: RoutesProps) => {
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<MovieDetail />} />
         <Route path="/actor/:id" element={<ActorDetail />} />
+        <Route path="/category/:id" element={<CategoryMovies />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
