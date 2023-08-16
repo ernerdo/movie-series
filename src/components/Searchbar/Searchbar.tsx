@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { Box, Flex, IconButton, Input, List, ListItem } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  IconButton,
+  Input,
+  List,
+  ListItem,
+  Image,
+} from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { useCombobox } from 'downshift'
@@ -63,18 +71,29 @@ const Searchbar = () => {
         {...getMenuProps()}
       >
         {isOpen &&
-          inputItems.map((item, index) => (
-            <ListItem
-              key={index}
-              {...getItemProps({ item, index })}
-              onClick={() => goToMovie(item.id)}
-              mb="3"
-              borderBottom="1px solid black"
-              fontWeight="normal"
-            >
-              {item.title}
-            </ListItem>
-          ))}
+          inputItems.map((item, index) => {
+            return (
+              <ListItem
+                key={index}
+                {...getItemProps({ item, index })}
+                onClick={() => goToMovie(item.id)}
+                display="flex"
+                justifyContent="space-between"
+                mb="3"
+                borderBottom="1px solid black"
+                fontWeight="normal"
+              >
+                {item.title}
+                <Image
+                  src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                  alt="poster movie"
+                  w="32px"
+                  h="32px"
+                  role="img for movie"
+                />
+              </ListItem>
+            )
+          })}
       </List>
     </Box>
   )
