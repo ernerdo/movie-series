@@ -65,3 +65,29 @@ export const getActorToSearch = async (
     return null
   }
 }
+
+/**
+ * Use multi search when you want to search for movies, TV shows and people in a single request.
+ *
+ * @async
+ * @function
+ * @query movie to search
+ * @returns coincidence of the movie
+ */
+export const getMultiSearch = async (
+  query: string
+): Promise<AllMovies | null> => {
+  try {
+    const params = {
+      query,
+      include_adult: false,
+      media_type: 'movie',
+    }
+    const response = await baseApiClient.get(`/search/multi`, { params })
+    if (response.status === 404 || response.status === 401) return null
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
