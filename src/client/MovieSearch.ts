@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { API_KEY, API_URL } from '../config'
 import { AllMovies } from '../models/movies/movies.model'
+import { SearchBarMulti } from '../models/search/searchBarGeneral.model'
 import { getLanguage } from '../utils/languages'
 
 const baseApiClient = axios.create({
@@ -76,7 +77,7 @@ export const getActorToSearch = async (
  */
 export const getMultiSearch = async (
   query: string
-): Promise<AllMovies | null> => {
+): Promise<SearchBarMulti | null> => {
   try {
     const params = {
       query,

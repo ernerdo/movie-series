@@ -11,15 +11,14 @@ import {
 import { SearchIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { useCombobox } from 'downshift'
-import { Movie } from '../../models/movies/movies.model'
 import { getMultiSearch } from '../../client/MovieSearch'
 import { API_IMAGE_URL } from '../../config'
-import { Actor } from '../../models/actor/actor.model'
+import { SearchBarGeneral } from '../../models/search/SearchBarGeneral.model'
 
-const Searchbar = () => {
+const SearchBar = () => {
   const { t } = useTranslation()
-  const placeholder = t('placeholder.searchbar')
-  const [inputItems, setInputItems] = useState<any[]>([])
+  const placeholder = t('placeholder.search_bar')
+  const [inputItems, setInputItems] = useState<SearchBarGeneral[]>([])
 
   const goToMovie = (id: number) => {
     const url = `${window.location.href}detail/${id}`
@@ -40,8 +39,7 @@ const Searchbar = () => {
   } = useCombobox({
     items: inputItems,
     onInputValueChange: async ({ inputValue }) => {
-      if (!inputValue) setInputItems([])
-      else {
+      if (inputValue) {
         const movies = await getMultiSearch(inputValue)
         const items = movies ? movies.results : []
         setInputItems(items)
@@ -49,7 +47,7 @@ const Searchbar = () => {
     },
   })
 
-  const searchMovieItem = (item: Movie, index: number) => {
+  const searchMovieItem = (item: SearchBarGeneral, index: number) => {
     return (
       <ListItem
         key={index}
@@ -75,7 +73,7 @@ const Searchbar = () => {
     )
   }
 
-  const searchActorItem = (item: Actor, index: number) => {
+  const searchActorItem = (item: SearchBarGeneral, index: number) => {
     const imagePath = item.profile_path ? item.profile_path : ''
     return (
       <ListItem
@@ -89,19 +87,19 @@ const Searchbar = () => {
         fontWeight="normal"
       >
         {item.name}
-        <Image
+        {imagePath && <Image
           src={`${API_IMAGE_URL}/original/${imagePath}`}
           alt="profile of the actor"
           w="32px"
           h="32px"
           role="img for movie"
-        />
+        />}
       </ListItem>
     )
   }
 
   return (
-    <Box position="relative" w={{ base: 'auto', sm: '10%', md: '40%' }}>
+    <Box position="relative" w={{ base: 'auto', sm: '60%', lg: '70%' }} maxW='700px'>
       <Flex pos="relative">
         <Input placeholder={placeholder} color="#fff" {...getInputProps()} />
         <IconButton
@@ -131,10 +129,11 @@ const Searchbar = () => {
         {isOpen &&
           inputItems
             .filter(
-              (item: any) =>
+              (item) =>
                 item.media_type === 'movie' || item.media_type === 'person'
             )
-            .map((item: any, index) => {
+            .sort((a, b) => a.id - b.id)
+            .map((item, index) => {
               if (item?.title) {
                 return searchMovieItem(item, index)
               } else {
@@ -146,4 +145,4 @@ const Searchbar = () => {
   )
 }
 
-export { Searchbar }
+export { SearchBar }
