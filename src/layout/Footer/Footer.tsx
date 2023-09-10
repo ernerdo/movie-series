@@ -17,11 +17,6 @@ const Footer = () => {
       maxW="1200px"
       mx="auto"
     >
-      <Flex>
-        <Text fontSize="24px" color="white" textAlign="center">
-          Project Movie
-        </Text>
-      </Flex>
       <Flex
         flexDir="column"
         w={{ base: '90%', sm: 'initial' }}
@@ -34,15 +29,11 @@ const Footer = () => {
             API TMDB
           </Link>{' '}
           by{' '}
-          <Link
-            href="https://github.com/darkusphantom"
-            target="_blank"
-            fontSize="12px"
-          >
+          <Link href="https://github.com/darkusphantom" target="_blank">
             @darkusphantom
           </Link>
           {' & '}
-          <Link href="https://www.ernerdo.com/" target="_blank" fontSize="12px">
+          <Link href="https://www.ernerdo.com/" target="_blank">
             @ernerdo
           </Link>
         </Text>

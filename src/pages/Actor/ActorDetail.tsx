@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getActorDetails, getActorMovies } from '../../client/ActorApiClient'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 
-import { Carousel } from '../../components'
+import { BackButton, Carousel, UpButton } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import { Actor } from '../../models/actor/actor.model'
 import { Movie } from '../../models/movies/movies.model'
@@ -29,7 +29,7 @@ export const ActorDetail = () => {
     <DefaultLayout>
       <GridItem area={'main'}>
         {actor && (
-          <Stack px={`10%`} gap={5}>
+          <Stack p={`10%`} gap={5}>
             <Stack
               flexDir={{ base: 'column', sm: 'row' }}
               justifyContent={`flex-start`}
@@ -48,6 +48,8 @@ export const ActorDetail = () => {
                 m={0}
                 src={`${API_IMAGE_URL}/original/${actor.profile_path}`}
               />
+              <BackButton />
+              <UpButton />
               <VStack alignItems={`flex-start`} gap={1}>
                 <Heading color={`white`}>
                   {actor.name} ({actor.birthday}{' '}

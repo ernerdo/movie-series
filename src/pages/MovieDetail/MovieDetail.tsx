@@ -19,7 +19,7 @@ import {
   getMovieVideos,
   getSimilarMovies,
 } from '../../client/MovieApiClient'
-import { Carousel, Iframe } from '../../components'
+import { Carousel, Iframe, BackButton, UpButton } from '../../components'
 import { API_IMAGE_URL } from '../../config'
 import DefaultLayout from '../../layout/DefaultLayout/DefaultLayout'
 import { Cast } from '../../models/casts/casts.model'
@@ -27,7 +27,6 @@ import { Movie } from '../../models/movies/movies.model'
 import { Trailer } from '../../models/movies/video.model'
 import coverDefault from '../../assets/cover-default.png'
 import { useTranslation } from 'react-i18next'
-import { ArrowBackIcon } from '@chakra-ui/icons'
 
 const MovieDetail = () => {
   const navigate = useNavigate()
@@ -108,19 +107,8 @@ const MovieDetail = () => {
                   }}
                 />
               </Skeleton>
-              <Link to={`/`}>
-                <Button
-                  position={`fixed`}
-                  style={{
-                    top: '2rem',
-                    left: '2rem',
-                    width: '2rem',
-                    zIndex: 1,
-                  }}
-                >
-                  <ArrowBackIcon />
-                </Button>
-              </Link>
+              <BackButton />
+              <UpButton />
             </Box>
             <Stack px={`10%`}>
               <Flex justifyContent={`space-between`} mb={5}>
