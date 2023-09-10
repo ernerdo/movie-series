@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { useCombobox } from 'downshift'
 import { getMultiSearch } from '../../client/MovieSearch'
 import { API_IMAGE_URL } from '../../config'
-import { SearchBarGeneral } from '../../models/search/SearchBarGeneral.model'
+import { SearchBarGeneral } from '../../models/search/searchBarGeneral.model'
 
 const SearchBar = () => {
   const { t } = useTranslation()
