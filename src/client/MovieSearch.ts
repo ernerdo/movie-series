@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { API_KEY, API_URL } from '../config'
 import { AllMovies } from '../models/movies/movies.model'
+import { SearchBarMulti } from '../models/search/searchBarGeneral.model'
 import { getLanguage } from '../utils/languages'
 
 const baseApiClient = axios.create({
@@ -58,6 +59,32 @@ export const getActorToSearch = async (
       media_type: 'movie',
     }
     const response = await baseApiClient.get(`/search/person`, { params })
+    if (response.status === 404 || response.status === 401) return null
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
+
+/**
+ * Use multi search when you want to search for movies, TV shows and people in a single request.
+ *
+ * @async
+ * @function
+ * @query movie to search
+ * @returns coincidence of the movie
+ */
+export const getMultiSearch = async (
+  query: string
+): Promise<SearchBarMulti | null> => {
+  try {
+    const params = {
+      query,
+      include_adult: false,
+      media_type: 'movie',
+    }
+    const response = await baseApiClient.get(`/search/multi`, { params })
     if (response.status === 404 || response.status === 401) return null
     return response.data
   } catch (error) {

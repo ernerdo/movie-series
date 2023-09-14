@@ -2,7 +2,7 @@ import { Box, Flex, GridItem } from '@chakra-ui/react'
 import { BtnBurger } from '../../components/BtnBurger'
 import { BtnTranslate } from '../../components/BtnTranslate'
 import { PageLogo } from '../../components/PageLogo'
-import { Searchbar } from '../../components/Searchbar'
+import { SearchBar } from '../../components/SearchBar'
 
 const Header = () => {
   return (
@@ -20,7 +20,7 @@ const Header = () => {
     >
       <Flex justifyContent="space-around" alignItems="center" gap="3" mb="16px">
         <PageLogo />
-        <Searchbar />
+        <SearchBar />
         <Box
           w="30%"
           maxW="75px"
